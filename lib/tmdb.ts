@@ -8,6 +8,21 @@ export async function fetchPopularMovies () {
   if (!res.ok) throw new Error("Failed to fetch trending movies");
   return res.json();
 }
+// Fetch Latest Movies ==========
+export async function fetchUpcomingMovies () {
+  const res = await fetch (`${BASE_URL}/movie/upcoming?api_key=${API_KEY}`)
+  if (!res.ok) throw new Error("Failed to fetch trending movies");
+  return res.json();
+}
+
+
+
+
+export async function fetchPopularTvs () {
+  const res = await fetch (`${BASE_URL}/tv/popular?api_key=${API_KEY}`)
+  if (!res.ok) throw new Error("Failed to fetch trending movies");
+  return res.json();
+}
 
 
 

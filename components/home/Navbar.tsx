@@ -1,0 +1,124 @@
+"use client";
+
+import { FaHeart } from "react-icons/fa6";
+import React, { useEffect, useRef, useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+import Link from "next/link";
+
+export default function Navbar() {
+  const [isScroll, setIsScroll] = useState<boolean>(false);
+  const sideMenuRef = useRef<HTMLUListElement | null>(null);
+
+  const openMenu = () => {
+    if (sideMenuRef.current) {
+      sideMenuRef.current.style.transform = "translateX(-16rem)";
+    }
+  };
+
+  const closeMenu = () => {
+    if (sideMenuRef.current) {
+      sideMenuRef.current.style.transform = "translateX(16rem)";
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScroll(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <>
+      <nav
+        className={`w-full sm:px-10 px-3 py-5 lg:px-8 xl:px-[8%] flex items-center justify-between z-50 bg-white  ${
+          isScroll
+            ? "dark:bg-darkTheme/50 dark:shadow-white/20 bg-white bg-opacity-50 backdrop-blur-lg shadow-sm fixed"
+            : "one-edge-shadow"
+        } `}
+      >
+        <Link href="/" className="text-3xl font-black">
+          MovieMate.
+        </Link>
+        <ul
+          className={`hidden lg:flex items-center gap-6 lg:gap-8 text-lg py-4 ${
+            isScroll
+              ? ""
+              : "text-darkGreen dark:border dark:border-white/50 dark:bg-transparent"
+          } `}
+        >
+          <li className="slide-up-hover">
+            <Link className="menu-style" href="/">
+              Home
+            </Link>
+          </li>
+          <li className="slide-up-hover">
+            <a className="menu-style" href="#top">
+              Best Sellers
+            </a>
+          </li>
+        </ul>
+
+        <div className="flex items-center justify-center gap-4">
+          <Link href="/favorites">
+            <button className="cursor-pointer bg-amber-100 p-3 rounded-md flex items-center justify-center gap-3">
+              My Favorites <FaHeart />
+            </button>
+          </Link>
+          <button className="lg:hidden">
+            <GiHamburgerMenu onClick={openMenu} size={25} />
+          </button>
+        </div>
+
+        {/*================ Mobile Menu ====================== */}
+        <ul
+          ref={sideMenuRef}
+          className="flex lg:hidden flex-col gap-4 py-10 px-10 fixed -right-64 h-screen w-64 z-50 bg-gray-50 transition duration-700 bottom-0 top-0 dark:bg-darkHover"
+        >
+          <div
+            className="absolute right-6 top-6 hover:opacity-60 duration-75 transition-opacity"
+            onClick={closeMenu}
+          >
+            <IoMdCloseCircleOutline size={20} className="cursor-pointer" />
+          </div>
+          <li className="slide-up-hover">
+            <a className="menu-style" onClick={closeMenu}>
+              Home
+            </a>
+          </li>
+          <li className="slide-up-hover">
+            <a className="menu-style" onClick={closeMenu}>
+              About us
+            </a>
+          </li>
+          <li className="slide-up-hover">
+            <a className="menu-style" href="#features" onClick={closeMenu}>
+              Features
+            </a>
+          </li>
+          <li className="slide-up-hover">
+            <a className="menu-style" href="#pricing" onClick={closeMenu}>
+              Pricing
+            </a>
+          </li>
+          <li className="slide-up-hover">
+            <a className="menu-style" onClick={closeMenu}>
+              Contact us
+            </a>
+          </li>
+          <li className="slide-up-hover">
+            <a className="menu-style" href="#faq" onClick={closeMenu}>
+              FAQ
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </>
+  );
+}

@@ -1,11 +1,13 @@
-import { fetchPopularMovies } from "@/lib/tmdb";
+import { fetchPopularMovies, fetchPopularTvs } from "@/lib/tmdb";
 import Image from "next/image";
 import { MoviesResponse } from "@/lib/types";
 
 
 export default async function MoviesPage() {
   const movies : MoviesResponse = await fetchPopularMovies();
-  console.log(movies)
+  // console.log(movies);
+  const tv = await fetchPopularTvs();
+  // console.log(tv);
 
   return (
     <div>
