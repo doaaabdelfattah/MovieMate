@@ -4,26 +4,32 @@
  * This hook allows users to:
  * - Save movies as favorites.
  * - Remove movies from favorites.
- * - Persist favorites using `localStorage`, ensuring they remain after page reloads.
+ * - Persist favorites using localStorage, ensuring they remain after page reloads.
  *
  * @returns {object} An object containing:
- * - `favorites`: An array of favorite movie IDs.
- * - `updateFavorites`: A function to add/remove a movie from favorites.
+ * - favorites: An array of favorite movie IDs.
+ * - updateFavorites: A function to add/remove a movie from favorites.
 
  */
 
 import { useState, useEffect } from "react";
 
 export function useFavorites () {
-  const [favorites, setFavorites] = useState<number[]>([]);
+  const [favorites, setFavorites] = useState<number[]>(
+    ()=> {
+      if(typeof window!== "undefined"){
+        return JSON.parse(localStorage.getItem("favorites")|| "[]");
+      }
+      return [];
+    });
   
   
   // ===== Load favorites from local storage when start
-  useEffect(()=> {
-    // Converts the stored JSON string into a JavaScript array.
-    const savedFavs = JSON.parse(localStorage.getItem("favorites") || "[]")
-    setFavorites(savedFavs)
-  },[]);
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]); 
+
+
 // Add or Remove favorite movie ========
 
 /**
@@ -34,11 +40,19 @@ export function useFavorites () {
    * @param {number} movieId - The ID of the movie to add/remove.
    */
 
-function updatefavorites(movieId:number) {
-  const updatedFavorites = favorites.includes(movieId) ? favorites.filter((id)=> id !== movieId)
-  : [...favorites, movieId];
-  setFavorites(updatedFavorites);
-  localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+function updateFavorites(movieId: number) {
+  setFavorites((prevFavorites) => {
+    const updatedFavorites = prevFavorites.includes(movieId)
+      ? prevFavorites.filter((id) => id !== movieId) // Remove if it exists
+      : [...prevFavorites, movieId]; // Add if it doesn’t exist
+
+      console.log("Updated favorites:", updatedFavorites);
+
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    return updatedFavorites;
+  });
 }
-return {favorites, updatefavorites}
+
+
+return {favorites, updateFavorites}
 };

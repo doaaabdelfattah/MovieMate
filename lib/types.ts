@@ -18,3 +18,8 @@ export type Movie = {
 export type MoviesResponse = {
   results: Movie[];
 }
+
+
+export interface MovieProps {
+  movie: Movie;
+}

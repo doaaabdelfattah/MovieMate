@@ -2,11 +2,11 @@
 import React from 'react'
 import { Movie } from '@/lib/types'
 import { useState } from 'react';
-interface HeroCardProps {
-  movie: Movie;
-}
+import AddToFavButton from '../reusable/AddToFavButton';
+import { MovieProps } from '@/lib/types';
 
-const HeroCard : React.FC<HeroCardProps>= ({movie}) => {
+
+const HeroCard : React.FC<MovieProps>= ({movie}) => {
   const [showDetails, setShowDetails] = useState(false);
   return (
     <div className='group relative w-1/3 h-screen bg-cover bg-center cursor-pointer transition-all duration-300 overflow-hidden'
@@ -15,7 +15,7 @@ const HeroCard : React.FC<HeroCardProps>= ({movie}) => {
     }}
     onMouseEnter={() => setShowDetails(true)}
       onMouseLeave={() => setShowDetails(false)}
-    
+    key={movie.id}
     >
       <div className="absolute inset-0 hover:bg-black/10 transition-all duration-700 bg-black/70"></div>
     
@@ -28,6 +28,9 @@ const HeroCard : React.FC<HeroCardProps>= ({movie}) => {
         <h2 className="text-2xl font-bold">{movie.title}</h2>
         <p className="text-sm mt-2">{movie.overview}</p>
         <p className="mt-4 text-yellow-400">⭐ {movie.vote_average}/10</p>
+      <AddToFavButton movieId={movie.id}/>
+      
+      
       </div>
     </div>
   )
