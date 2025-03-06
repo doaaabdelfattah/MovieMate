@@ -1,7 +1,7 @@
 export type Movie = {
   adult: boolean,
       backdrop_path: string,
-      // genre_ids: [Array],
+      genre_ids: number[],
       id: number,
       original_language: string,
       original_title: string,
@@ -22,4 +22,5 @@ export type MoviesResponse = {
 
 export interface MovieProps {
   movie: Movie;
+  genreMap?: Record<number, string>;
 }

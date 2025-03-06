@@ -1,5 +1,5 @@
 "use client"
-import MovieCard from '@/components/MovieCard';
+import MovieCard from '@/components/reusable/MovieCard';
 import React, { useEffect, useState } from 'react'
 import { fetchMovieDetails } from '@/lib/tmdb';
 

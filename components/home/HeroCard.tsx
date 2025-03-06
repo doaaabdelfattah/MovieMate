@@ -1,39 +1,51 @@
 "use client"
-import React from 'react'
-import { Movie } from '@/lib/types'
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion'; // Import Framer Motion
 import AddToFavButton from '../reusable/AddToFavButton';
 import { MovieProps } from '@/lib/types';
+import { getGenreNames } from '@/lib/utils';
+import { FaStar } from "react-icons/fa6";
 
-
-const HeroCard : React.FC<MovieProps>= ({movie}) => {
+const HeroCard: React.FC<MovieProps> = ({ movie,genreMap }) => {
   const [showDetails, setShowDetails] = useState(false);
+const genres = getGenreNames(movie.genre_ids, genreMap || {} ).join(" | ");
   return (
-    <div className='group relative w-1/3 h-screen bg-cover bg-center cursor-pointer transition-all duration-300 overflow-hidden'
-    style={{
-      backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`,
-    }}
-    onMouseEnter={() => setShowDetails(true)}
+    <div
+      className="relative w-full h-[calc(100vh-90px)] bg-cover bg-center cursor-pointer transition-all duration-300
+      
+      "
+      style={{
+        backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`,
+      }}
+      onMouseEnter={() => setShowDetails(true)}
       onMouseLeave={() => setShowDetails(false)}
-    key={movie.id}
+      key={movie.id}
     >
-      <div className="absolute inset-0 hover:bg-black/10 transition-all duration-700 bg-black/70"></div>
-    
-     {/* Movie Details */}
+<motion.div
+  initial={{ opacity: 0 }}
+  animate={showDetails ? { opacity: 1 } : { opacity: 0 }}
+  transition={{ duration: 0.4, ease: "easeInOut" }}
+  className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent transition-all duration-700"
+/>
 
-     <div
-        className={`absolute bottom-0 left-0 w-full bg-black/80 text-white p-4 text-center transition-transform duration-500 ease-in-out
-        ${showDetails ? "-translate-y-6/12" : "translate-y-full"}`}
+      {/* Animated Movie Details */}
+
+
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={showDetails ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
+        className="absolute inset-0 flex flex-col items-start justify-end mb-4  text-white p-6 mx-auto text-left"
       >
-        <h2 className="text-2xl font-bold">{movie.title}</h2>
-        <p className="text-sm mt-2">{movie.overview}</p>
-        <p className="mt-4 text-yellow-400">⭐ {movie.vote_average}/10</p>
-      <AddToFavButton movieId={movie.id}/>
-      
-      
-      </div>
+        <h2 className="text-5xl font-black uppercase">{movie.title}</h2>
+        <span className='font-light'>{genres}</span>
+        {/* <p className="text-md mt-2">{movie.overview}</p> */}
+        <p className="mt-3 flex text-base items-center gap-2 font-semibold text-[#FF9529] tracking-wider"><FaStar /> {movie.vote_average}/10</p>
+        <AddToFavButton movieId={movie.id} />
+      </motion.div>
+     
     </div>
-  )
-}
+  );
+};
 
-export default HeroCard
+export default HeroCard;

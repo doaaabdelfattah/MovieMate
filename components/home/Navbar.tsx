@@ -1,13 +1,12 @@
 "use client";
 
 import { FaHeart } from "react-icons/fa6";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import Link from "next/link";
 
 export default function Navbar() {
-  const [isScroll, setIsScroll] = useState<boolean>(false);
   const sideMenuRef = useRef<HTMLUListElement | null>(null);
 
   const openMenu = () => {
@@ -22,37 +21,13 @@ export default function Navbar() {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScroll(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <>
-      <nav
-        className={`w-full sm:px-10 px-3 py-5 lg:px-8 xl:px-[8%] flex items-center justify-between z-50 bg-white  ${
-          isScroll
-            ? "dark:bg-darkTheme/50 dark:shadow-white/20 bg-white bg-opacity-50 backdrop-blur-lg shadow-sm fixed"
-            : "one-edge-shadow"
-        } `}
-      >
+      <nav className="w-full h-[90px] sm:px-10 px-3 py-5 lg:px-8 xl:px-[8%] flex items-center justify-between bg-white one-edge-shadow">
         <Link href="/" className="text-3xl font-black">
           MovieMate.
         </Link>
-        <ul
-          className={`hidden lg:flex items-center gap-6 lg:gap-8 text-lg py-4 ${
-            isScroll
-              ? ""
-              : "text-darkGreen dark:border dark:border-white/50 dark:bg-transparent"
-          } `}
-        >
+        <ul className="hidden lg:flex items-center gap-6 lg:gap-8 text-lg py-4">
           <li className="slide-up-hover">
             <Link className="menu-style" href="/">
               Home

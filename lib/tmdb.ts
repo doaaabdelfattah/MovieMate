@@ -14,7 +14,7 @@ export async function fetchPopularMovies () {
 
 
 
-// Fetch Latest Movies ==========
+// Fetch Upcoming Movies ==========
 export async function fetchUpcomingMovies () {
   const res = await fetch (`${BASE_URL}/movie/upcoming?api_key=${API_KEY}`)
   if (!res.ok) throw new Error("Failed to fetch trending movies");
@@ -36,23 +36,20 @@ export async function fetchPopularTvs () {
 
 // ======= Fetch movie details by id ==============
 export async function fetchMovieDetails(movieId: number) {
-  // const options = {
-  //   method: 'GET',
-  //   headers: {
-  //     accept: 'application/json',
-  //     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzAwMjQ2Yjc1Yjk5MTI4MjgyZTllNTMzMTNhMjMxMyIsIm5iZiI6MTczNzMyMzk2OC4zMDQsInN1YiI6IjY3OGQ3NWMwZGNiNmU4MzlmMzQyZjhlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.sfhJvi0Qp-7kjKyBvB4yyt4gYrfmnq9BCN3tnf6pxZM'
-  //   }
-  // };
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: `Bearer ${ACCESS_TOKEN}`
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzAwMjQ2Yjc1Yjk5MTI4MjgyZTllNTMzMTNhMjMxMyIsIm5iZiI6MTczNzMyMzk2OC4zMDQsInN1YiI6IjY3OGQ3NWMwZGNiNmU4MzlmMzQyZjhlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.sfhJvi0Qp-7kjKyBvB4yyt4gYrfmnq9BCN3tnf6pxZM'
     }
   };
-
-
-
+  // const options = {
+  //   method: 'GET',
+  //   headers: {
+  //     accept: 'application/json',
+  //     Authorization: `Bearer ${ACCESS_TOKEN}`
+  //   }
+  // };
 
 
 
@@ -78,3 +75,22 @@ export async function fetchMovieDetails(movieId: number) {
 //     return null; // Return null instead of crashing the app
 //   }
 // }
+
+
+
+
+// =========== Fetch Genre =============
+export async function fetchGenres() {
+  const res = await fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
+  if (!res.ok) throw new Error("Failed to fetch genres");
+  
+  const data = await res.json();
+  
+  // Convert the array into an object for quick lookup
+  const genreMap: Record<number, string> = {};
+  data.genres.forEach((genre: { id: number; name: string }) => {
+    genreMap[genre.id] = genre.name;
+  });
+
+  return genreMap;
+}

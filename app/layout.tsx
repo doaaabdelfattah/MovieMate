@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en">
-      <body className={`${outfit.className} ${ovo.className} ${roboto.className} antialiased leading-8 overflow-x-hidden `}>
+      <body className={`${outfit.className} ${ovo.className} ${roboto.className} antialiased leading-8 `}>
 <Navbar/>
         {children}
       </body>
