@@ -12,7 +12,7 @@ const Button = styled.button`
 background-color: none;
 border: 1px;
 border-radius: 5px;
-border: white;
+border: 2px solid white;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -21,16 +21,16 @@ color:white;
 padding: 0.75rem;
 font-size:18px;
 font-weight: 500;
+cursor: pointer;
+transition: background-color 0.5s linear, color 0.5s linear;
 
 
 &:hover {
   background-color: white;
+  color:black;
 }
 
-
 `
-
-
 
 
 const AddToFavButton: React.FC<AddToFavButtonProps> = ({movieId}) => {

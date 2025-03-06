@@ -5,6 +5,8 @@ import AddToFavButton from '../reusable/AddToFavButton';
 import { MovieProps } from '@/lib/types';
 import { getGenreNames } from '@/lib/utils';
 import { FaStar } from "react-icons/fa6";
+import Link from 'next/link';
+import Rating from '../reusable/Rating';
 
 const HeroCard: React.FC<MovieProps> = ({ movie,genreMap }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -35,12 +37,17 @@ const genres = getGenreNames(movie.genre_ids, genreMap || {} ).join(" | ");
         initial={{ opacity: 0, y: 10 }}
         animate={showDetails ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="absolute inset-0 flex flex-col items-start justify-end mb-4  text-white p-6 mx-auto text-left"
+        className="absolute inset-0 flex flex-col items-start justify-end mb-4 gap-2 text-white p-6 mx-auto text-left"
       >
+      <Link href={`/movies/${movie.id}`}>
+      
+    
         <h2 className="text-5xl font-black uppercase">{movie.title}</h2>
         <span className='font-light'>{genres}</span>
         {/* <p className="text-md mt-2">{movie.overview}</p> */}
-        <p className="mt-3 flex text-base items-center gap-2 font-semibold text-[#FF9529] tracking-wider"><FaStar /> {movie.vote_average}/10</p>
+        {/* <p className="mt-3 flex text-base items-center gap-2 font-semibold text-[#FF9529] tracking-wider "><FaStar /> {movie.vote_average}/10</p> */}
+        <Rating vote={movie.vote_average}/>
+        </Link>
         <AddToFavButton movieId={movie.id} />
       </motion.div>
      
