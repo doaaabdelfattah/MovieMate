@@ -38,10 +38,10 @@ useEffect(()=>{
 
 
   return (
-    <div>
+    <div className='container'>
       <h1>My Favorites</h1>
       {myFav.length > 0 ? (
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-4 p-10">
           {favMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}

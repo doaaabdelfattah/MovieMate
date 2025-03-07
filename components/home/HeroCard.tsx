@@ -7,14 +7,20 @@ import { getGenreNames } from '@/lib/utils';
 import { FaStar } from "react-icons/fa6";
 import Link from 'next/link';
 import Rating from '../reusable/Rating';
+import FavoriteBtn from '../reusable/FavoriteBtn';
+import { useFavorites } from "@/hooks/useFavorites";
 
 const HeroCard: React.FC<MovieProps> = ({ movie,genreMap }) => {
+  const {favorites, updateFavorites} = useFavorites();
+const isFavorite = favorites.includes(movie.id);
+
+
   const [showDetails, setShowDetails] = useState(false);
+  
 const genres = getGenreNames(movie.genre_ids, genreMap || {} ).join(" | ");
   return (
     <div
-      className="relative w-full h-[calc(100vh-90px)] bg-cover bg-center cursor-pointer transition-all duration-300
-      
+      className="relative w-full h-[calc(100vh-90px)] bg-cover bg-center cursor-pointer transition-all duration-300     
       "
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`,
@@ -48,6 +54,11 @@ const genres = getGenreNames(movie.genre_ids, genreMap || {} ).join(" | ");
         {/* <p className="mt-3 flex text-base items-center gap-2 font-semibold text-[#FF9529] tracking-wider "><FaStar /> {movie.vote_average}/10</p> */}
         <Rating vote={movie.vote_average}/>
         </Link>
+        {/* <div className='flex gap-2'>
+
+        <FavoriteBtn movieId={movie.id}/>
+        <span>{favorites.includes(movie.id) ? "| Favorited" : "| Add to Favorite"}</span>
+        </div> */}
         <AddToFavButton movieId={movie.id} />
       </motion.div>
      

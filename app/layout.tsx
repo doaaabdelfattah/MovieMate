@@ -18,7 +18,7 @@ const roboto = Roboto({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${outfit.className} ${ovo.className} ${roboto.className} antialiased leading-8 `}>
 <Navbar/>
         {children}

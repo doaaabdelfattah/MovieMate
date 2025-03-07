@@ -23,8 +23,8 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="w-full h-[90px] sm:px-10 px-3 py-5 lg:px-8 xl:px-[8%] flex items-center justify-between bg-white one-edge-shadow">
-        <Link href="/" className="text-3xl font-black">
+      <nav className="w-full h-[90px] sm:px-10 px-3 py-5 lg:px-8 xl:px-[8%] bg-black-10 flex items-center justify-between bg-white ">
+        <Link href="/" className="text-4xl font-black">
           MovieMate.
         </Link>
         <ul className="hidden lg:flex items-center gap-6 lg:gap-8 text-lg py-4">
