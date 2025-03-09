@@ -1,0 +1,10 @@
+{
+  "workbench.settings.useSplitJSON": false,
+  "tailwindCSS.experimental.configFile": "app/globals.css",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  }
+}

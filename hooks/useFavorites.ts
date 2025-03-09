@@ -14,25 +14,22 @@
 
 import { useState, useEffect } from "react";
 
-export function useFavorites () {
-  const [favorites, setFavorites] = useState<number[]>(
-    ()=> {
-      if(typeof window!== "undefined"){
-        return JSON.parse(localStorage.getItem("favorites")|| "[]");
-      }
-      return [];
-    });
-  
-  
+export function useFavorites() {
+  const [favorites, setFavorites] = useState<number[]>(() => {
+    if (typeof window !== "undefined") {
+      return JSON.parse(localStorage.getItem("favorites") || "[]");
+    }
+    return [];
+  });
+
   // ===== Load favorites from local storage when start
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]); 
+  }, [favorites]);
 
+  // Add or Remove favorite movie ========
 
-// Add or Remove favorite movie ========
-
-/**
+  /**
    * Updates the favorite movie list:
    * - If the movie is already favorited, remove it.
    * - If not, add it to favorites.
@@ -40,19 +37,16 @@ export function useFavorites () {
    * @param {number} movieId - The ID of the movie to add/remove.
    */
 
-function updateFavorites(movieId: number) {
-  setFavorites((prevFavorites) => {
-    const updatedFavorites = prevFavorites.includes(movieId)
-      ? prevFavorites.filter((id) => id !== movieId) // Remove if it exists
-      : [...prevFavorites, movieId]; // Add if it doesn’t exist
+  function updateFavorites(movieId: number) {
+    setFavorites((prevFavorites) => {
+      const updatedFavorites = prevFavorites.includes(movieId)
+        ? prevFavorites.filter((id) => id !== movieId)
+        : [...prevFavorites, movieId];
 
-      console.log("Updated favorites:", updatedFavorites);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      return updatedFavorites;
+    });
+  }
 
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-    return updatedFavorites;
-  });
+  return { favorites, updateFavorites };
 }
-
-
-return {favorites, updateFavorites}
-};

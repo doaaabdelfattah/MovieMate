@@ -1,10 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
+@import "tailwindcss";
 
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-darkColor: #131722;
+  --color-darkColorSec: #21283b;
+  --color-lightColor: #ffffff;
+  --color-primary: #f56565;
+  --color-secondary: #38b2ac;
+  --color-tertiary: #3182ce;
+  --color-gray-100: #f7fafc;
+  --color-gray-200: #edf2f7;
 }
 
 /*
@@ -26,8 +35,8 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-darkColorSec);
+  --foreground: white;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,12 +49,11 @@
 body {
   color: var(--foreground);
   background: var(--background);
- font-family:"Nunito", sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 .container {
   width: 90%;
-  
 }
 
 /* ☁️ Custom Shadows */
@@ -63,85 +71,19 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-
 .heading-text {
-  font-family: "Roboto", sans-serif;;
+  font-family: "Roboto", sans-serif;
 }
 .body-text {
   font-family: "Nunito", sans-serif;
 }
 
-
 .one-edge-shadow {
   box-shadow: inset 0 -10px 10px -6px #dfdfdf;
 }
 
-
-
-
-
-/* From Uiverse.io by neerajbaniwal */ 
-.btn-shine {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 12px 48px;
-  color: #fff;
-  background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
-  background-position: 0;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 3s infinite linear;
-  animation-fill-mode: forwards;
-  -webkit-text-size-adjust: none;
-  font-weight: 600;
-  font-size: 16px;
-  text-decoration: none;
-  white-space: nowrap;
-  font-family: "Poppins", sans-serif;
-}
-@-moz-keyframes shine {
-  0% {
-    background-position: 0;
-  }
-  60% {
-    background-position: 180px;
-  }
-  100% {
-    background-position: 180px;
-  }
-}
-@-webkit-keyframes shine {
-  0% {
-    background-position: 0;
-  }
-  60% {
-    background-position: 180px;
-  }
-  100% {
-    background-position: 180px;
-  }
-}
-@-o-keyframes shine {
-  0% {
-    background-position: 0;
-  }
-  60% {
-    background-position: 180px;
-  }
-  100% {
-    background-position: 180px;
-  }
-}
-@keyframes shine {
-  0% {
-    background-position: 0;
-  }
-  60% {
-    background-position: 180px;
-  }
-  100% {
-    background-position: 180px;
-  }
+.swiper-button-prev,
+.swiper-button-next {
+  color: var(--color-lightColor) !important;
+  width: ;
 }
