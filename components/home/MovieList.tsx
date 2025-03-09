@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { fetchMovies } from "@/lib/tmdb";
+import MovieCard from "../reusable/MovieCard";
 
 export default function MovieList() {
-  const [movies, setMovies] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [movies, setMovies] = useState([]); // Store movies
+  const [currentPage, setCurrentPage] = useState(1); // Track page number
+  const [loading, setLoading] = useState(false); // Loading state
+  const [error, setError] = useState(null); // Error handling
 
   useEffect(() => {
     const loadMovies = async () => {
@@ -18,16 +19,15 @@ export default function MovieList() {
         const response = await fetchMovies({
           category: "popular",
           currentPage,
-          genre: [16, 10751, 878, 99],
+          genre: [16, 10751, 878], // Animation, Family, Science Fiction
         });
+
         setMovies((prevMovies) => {
-          // ✅ Filter out duplicate movies by ID
           const newMovies = response.results.filter(
             (newMovie) =>
               !prevMovies.some((prevMovie) => prevMovie.id === newMovie.id)
           );
-
-          return [...prevMovies, ...newMovies];
+          return [...prevMovies, ...newMovies]; // ✅ Append movies, don't replace
         });
       } catch (err) {
         setError("Failed to fetch movies");
@@ -37,24 +37,25 @@ export default function MovieList() {
     };
 
     loadMovies();
-  }, [currentPage]); // Runs when currentPage changes
-
-  if (loading) return <p>Loading movies...</p>;
-  if (error) return <p>{error}</p>;
+  }, [currentPage]); // Runs when `currentPage` changes
 
   return (
     <div>
-      <h2>Movies</h2>
-      <ul>
+      {error && <p>{error}</p>}
+
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 h-[900px]">
         {movies.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
+          <MovieCard key={movie.id} movie={movie} />
+          // <li key={movie.id}>{movie.title}</li>
         ))}
       </ul>
+
       <button
-        className="cursor-pointer text-bold"
+        className="cursor-pointer text-bold mt-4 p-2 bg-blue-500 text-white rounded"
         onClick={() => setCurrentPage((prev) => prev + 1)}
+        disabled={loading} // Prevent multiple clicks while loading
       >
-        Load More
+        {loading ? "Loading..." : "Load More"}
       </button>
     </div>
   );
