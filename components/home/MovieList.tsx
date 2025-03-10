@@ -17,9 +17,9 @@ export default function MovieList() {
 
       try {
         const response = await fetchMovies({
-          category: "popular",
+          category: "top_rated",
           currentPage,
-          genre: [16, 10751, 878], // Animation, Family, Science Fiction
+          genre: [10751, 16, 878], // Animation, Family, Science Fiction
         });
 
         setMovies((prevMovies) => {
@@ -46,7 +46,6 @@ export default function MovieList() {
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 h-[900px]">
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
-          // <li key={movie.id}>{movie.title}</li>
         ))}
       </ul>
 

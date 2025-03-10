@@ -4,6 +4,67 @@ const ACCESS_TOKEN = process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN;
 const BASE_URL = "https://api.themoviedb.org/3";
 import { fetchMoviesProps } from "./types";
 
+// --------- Configurations ------------
+export const TMDB_CONFIG = {
+  BASE_URL: "https://api.themoviedb.org/3",
+  API_KEY: process.env.NEXT_PUBLIC_TMDB_API_KEY,
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN}`,
+  },
+};
+
+// - - - - - - custom fetch - - - - -
+
+export const customFetchMovies = async ({
+  query,
+}: {
+  query: string;
+}): Promise<Movie[]> => {
+  const endpoint = query
+    ? `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
+    : `${TMDB_CONFIG.BASE_URL}/discover/movie?sort_by=popularity.desc`;
+
+  const response = await fetch(endpoint, {
+    method: "GET",
+    headers: TMDB_CONFIG.headers,
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch movies: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.results || [];
+};
+
+export const fetchMoviesWithPage = async ({
+  query,
+  page = 1,
+}: {
+  query: string;
+  page?: number;
+}): Promise<Movie[]> => {
+  const endpoint = query
+    ? `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(
+        query
+      )}&page=${page}`
+    : `${TMDB_CONFIG.BASE_URL}/discover/movie?sort_by=popularity.desc&page=${page}`; // Added page
+
+  console.log("endpoint", endpoint);
+  const response = await fetch(endpoint, {
+    method: "GET",
+    headers: TMDB_CONFIG.headers,
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch movies: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.results || [];
+};
+
 // - - - - - -  - - Dynamic FETCH Movies - - - - - - - - - - -
 export const fetchMovies = async ({
   category,

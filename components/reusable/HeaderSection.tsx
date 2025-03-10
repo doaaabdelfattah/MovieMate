@@ -3,7 +3,6 @@ import React from "react";
 import styled from "styled-components";
 
 const HeaderContainer = styled.header`
-  // padding: 20px;
   text-align: left;
   position: relative;
   display: flex;
@@ -15,11 +14,11 @@ const HeaderContainer = styled.header`
 `;
 
 const Title = styled.h2`
-  font-size: 1.5em;
+  font-size: clamp(1.5rem, 3vw, 2.5rem); /* Responsive font size */
   line-height: 1.25;
   position: relative;
   display: block;
-  font-weight: 400;
+  font-weight: 500;
   text-align: left;
   margin-bottom: 15px;
   color: white;
@@ -33,14 +32,14 @@ const Title = styled.h2`
     height: 1px;
     margin-left: 10px;
     background-color: #e2e5ef;
-    bg-opacity: 0.5;
-    // margin-top: 10px;
+    opacity: 0.5;
   }
 `;
 
 const Subtitle = styled.h2`
-  font-size: 1.5em;
+  font-size: clamp(1rem, 2.5vw, 1.8rem); /* Adjust subtitle size */
   font-weight: 300;
+  color: #cfd4e6;
 `;
 
 interface HeaderSectionProps {

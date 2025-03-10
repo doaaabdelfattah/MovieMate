@@ -1,28 +1,64 @@
-import { fetchPopularMovies, fetchPopularTvs } from "@/lib/tmdb";
-import Image from "next/image";
-import { MoviesResponse } from "@/lib/types";
+"use client";
 
-export default async function MoviesPage() {
-  const movies: MoviesResponse = await fetchPopularMovies();
+import { fetchMoviesWithPage } from "@/lib/tmdb";
+import { Movie } from "@/lib/types";
+import useFetch from "@/hooks/useFetch";
+// import { useEffect, useState } from "react";
+import MovieCard from "@/components/reusable/MovieCard";
+import HeaderSection from "@/components/reusable/HeaderSection";
+import useFetchPage from "@/hooks/useFetchPage";
+export default function MoviesPage() {
+  // const {
+  //   data: movies,
+  //   loading: moviesLoading,
+  //   error: moviesError,
+  // } = useFetch<Movie[]>(() =>
+  //   customFetchMovies({
+  //     query: "",
+  //   })
+  // );
+
+  const {
+    data: movies,
+    loading: moviesLoading,
+    error: moviesError,
+
+    loadMore,
+    hasMore,
+  } = useFetchPage((page) =>
+    fetchMoviesWithPage({
+      query: "",
+      page,
+    })
+  );
 
   return (
-    <div>
-      <h1>Trending Movies</h1>
-      <ul>
-        {movies.results.map((movie) => (
-          <li key={movie.id}>
-            {movie.title}
+    <section className="container mx-auto relative">
+      <article className="mt-[100px]">
+        {/* <HeaderSection
+          title={`Movies ${query ? `- Results for "${query}"` : ""}`}
+        /> */}
+        <HeaderSection title="Discover Movies" />
+      </article>
+      {moviesLoading && <p>Loading...</p>}
+      {moviesError && <p>Error: {moviesError}</p>}
+      <div>
+        <ul className="grid grid-cols-5 gap-4 p-10">
+          {movies?.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </ul>
 
-            <Image
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              width={200}
-              height={200}
-              className=""
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
+        {hasMore && (
+          <button
+            className="cursor-pointer bg-amber-300 p-3"
+            onClick={loadMore}
+            disabled={moviesLoading}
+          >
+            Load More
+          </button>
+        )}
+      </div>
+    </section>
   );
 }

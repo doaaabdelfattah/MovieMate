@@ -6,14 +6,20 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  --color-darkColor: #131722;
-  --color-darkColorSec: #21283b;
+  --color-darkColor: #030014;
+  /* --color-darkColor: #0F0D23; */
+  --color-secondary: #151312;
+
+--color-darkColorSec: #21283b;
   --color-lightColor: #ffffff;
-  --color-primary: #f56565;
-  --color-secondary: #38b2ac;
-  --color-tertiary: #3182ce;
-  --color-gray-100: #f7fafc;
-  --color-gray-200: #edf2f7;
+
+  --color-light-100: #d6c7ff;
+  --color-light-200: #a8b5db;
+  --color-light-300: #9ca4ab;
+
+  --color-dark-100: #221f3d;
+  --color-dark-200: #0f0d23;
+  --color-accent: "#AB8BFF";
 }
 
 /*
@@ -35,7 +41,7 @@
 }
 
 :root {
-  --background: var(--color-darkColorSec);
+  --background: var(--color-dark-200);
   --foreground: white;
 }
 
@@ -85,5 +91,4 @@ body {
 .swiper-button-prev,
 .swiper-button-next {
   color: var(--color-lightColor) !important;
-  width: ;
 }

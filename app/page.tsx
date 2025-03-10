@@ -25,7 +25,7 @@ export default async function Home() {
     [16, 10751, 878, 12]
   );
   return (
-    <div className="bg-darkColorSec">
+    <div className="">
       <Hero />
       <TopRatedMovies movies={fileteredTopRated} />
       <NowPlaying movies={filteredNowPlayingMovies} />

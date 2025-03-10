@@ -31,17 +31,21 @@ export default function MyFavoritesPage() {
   }, [myFav]);
 
   return (
-    <div className="container">
+    <div className="container mx-auto">
       <h1>My Favorites</h1>
-      {myFav.length > 0 ? (
-        <div className="grid grid-cols-3 gap-4 p-10">
-          {favMovies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-        </div>
-      ) : (
-        <p>No favorites yet!</p>
-      )}
+      <div className="mx-auto">
+        {myFav.length > 0 ? (
+          <div className="grid grid-cols-5 gap-4 p-10">
+            {favMovies.map((movie) => (
+              <div className="w-full" key={movie.id}>
+                <MovieCard key={movie.id} movie={movie} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No favorites yet!</p>
+        )}
+      </div>
     </div>
   );
 }

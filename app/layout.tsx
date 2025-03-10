@@ -23,7 +23,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className="scroll-smooth bg-darkColorSec"
+      className="scroll-smooth"
     >
       <body
         className={`${outfit.className} ${ovo.className} ${roboto.className} antialiased  leading-8 `}
