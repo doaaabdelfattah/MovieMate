@@ -40,7 +40,6 @@ const useFetchPage = (
       setPage(newPage);
       setHasMore(filteredMovies.length > 0);
     } catch (err) {
-      // @ts-ignore
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
@@ -49,7 +48,7 @@ const useFetchPage = (
 
   useEffect(() => {
     if (autoFetch) fetchData();
-  }, []);
+  });
 
   const loadMore = () => {
     if (hasMore && !loading) fetchData(page + 1); // Fetch next page when "Load More" is clicked

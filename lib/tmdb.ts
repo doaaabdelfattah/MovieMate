@@ -3,6 +3,7 @@ const ACCESS_TOKEN = process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN;
 
 const BASE_URL = "https://api.themoviedb.org/3";
 import { fetchMoviesProps } from "./types";
+import { Movie } from "./types";
 
 // --------- Configurations ------------
 export const TMDB_CONFIG = {
@@ -86,7 +87,7 @@ export const fetchMovies = async ({
   const data = await res.json();
 
   const filteredMovies = genre.length
-    ? data.results.filter((movie) =>
+    ? data.results.filter((movie: Movie) =>
         movie.genre_ids.some((id) => genre.includes(id))
       )
     : data.results; // If no genre filter, return all

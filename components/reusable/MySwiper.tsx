@@ -7,8 +7,12 @@ import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
 import Rating from "./Rating";
+import { Movie } from "@/lib/types";
+interface MySwiperProps {
+  movies: Movie[];
+}
 
-const MySwiper = ({ movies }) => {
+const MySwiper: React.FC<MySwiperProps> = ({ movies }) => {
   return (
     <Swiper
       navigation={true}
@@ -33,6 +37,7 @@ const MySwiper = ({ movies }) => {
                 width={300}
                 height={450}
                 className="transition-all duration-300 group-hover:scale-105 group-hover:opacity-70"
+                priority
               />
 
               {/* Hover Overlay (Optional) */}

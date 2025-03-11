@@ -7,8 +7,8 @@ const FAMILY_FRIENDLY_GENRES = [10751, 16, 12, 14];
 // const ROMANCE_GENRE_ID = 10749;
 // const DOCUMENTARY_GENRE_ID = 99;
 
-const useFetch = (fetchFunction: () => Promise<T[]>, autoFetch = true) => {
-  const [data, setData] = useState<T[] | null>(null);
+const useFetch = (fetchFunction: () => Promise<Movie[]>, autoFetch = true) => {
+  const [data, setData] = useState<Movie[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -28,7 +28,6 @@ const useFetch = (fetchFunction: () => Promise<T[]>, autoFetch = true) => {
 
       setData(filteredMovies);
     } catch (err) {
-      // @ts-ignore
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
@@ -42,7 +41,7 @@ const useFetch = (fetchFunction: () => Promise<T[]>, autoFetch = true) => {
 
   useEffect(() => {
     if (autoFetch) fetchData();
-  }, []);
+  });
   return { data, loading, error, refetch: fetchData, reset };
 };
 

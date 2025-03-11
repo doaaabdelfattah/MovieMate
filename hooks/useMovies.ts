@@ -30,8 +30,8 @@ export default function useMovies(category = "popular", genre: number[] = []) {
       setPage(newPage);
 
       if (newMovies.length < 20) setHasMore(false); // TMDB usually returns 20 movies per page
-    } catch (error) {
-      setError("Failed to fetch movies, please try again later");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -43,6 +43,7 @@ export default function useMovies(category = "popular", genre: number[] = []) {
     setPage(1);
     setHasMore(true);
     loadMovies(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category, genre]);
 
   // Function to load more movies

@@ -15,9 +15,9 @@ export type Movie = {
   vote_count: number;
 };
 
-export type MoviesResponse = {
+export interface MoviesResponse {
   results: Movie[];
-};
+}
 
 export interface fetchMoviesProps {
   category: string;
