@@ -4,12 +4,15 @@ import { fetchMovieDetails } from "@/lib/tmdb";
 import Image from "next/image";
 
 interface MoviePageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function MoviePage({ params }: MoviePageProps) {
   const { id } = await params;
   const movieId = Number(id);
+
+  // const movieId = Number(params.id);
+
   if (isNaN(movieId)) {
     return <h1>Invalid Movie ID</h1>;
   }
