@@ -3,13 +3,16 @@ import Rating from "@/components/reusable/Rating";
 import { fetchMovieDetails } from "@/lib/tmdb";
 import Image from "next/image";
 
-export default async function MoviePage({
-  params,
-}: {
+interface MoviePageProps {
   params: { id: string };
-}) {
-  const movieId = Number(params.id);
+}
 
+export default async function MoviePage({ params }: MoviePageProps) {
+  const { id } = await params;
+  const movieId = Number(id);
+  if (isNaN(movieId)) {
+    return <h1>Invalid Movie ID</h1>;
+  }
   const movieDetails = await fetchMovieDetails(movieId);
 
   if (isNaN(movieId)) {
@@ -43,7 +46,7 @@ export default async function MoviePage({
             <Image
               src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
               width={500}
-              height={500}
+              height={750}
               alt="poster"
               className="w-full h-auto"
             />
@@ -53,7 +56,9 @@ export default async function MoviePage({
           <div className=" w-full md:w-2/3 px-5 mt-10 flex flex-col items-start gap-1">
             <h1 className="text-4xl font-black">{movieDetails.title}</h1>
             <div className="flex gap-6 text-normal font-light">
-              {movieDetails.genres.map((genre) => genre.name).join(" | ")}
+              {movieDetails.genres
+                .map((genre: { name: string }) => genre.name)
+                .join(" | ")}
             </div>
 
             <div className="flex items-center justify-between gap-10">
