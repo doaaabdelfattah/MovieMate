@@ -1,23 +1,11 @@
 "use client";
 
 import { fetchMoviesWithPage } from "@/lib/tmdb";
-import { Movie } from "@/lib/types";
-import useFetch from "@/hooks/useFetch";
-// import { useEffect, useState } from "react";
+
 import MovieCard from "@/components/reusable/MovieCard";
 import HeaderSection from "@/components/reusable/HeaderSection";
 import useFetchPage from "@/hooks/useFetchPage";
 export default function MoviesPage() {
-  // const {
-  //   data: movies,
-  //   loading: moviesLoading,
-  //   error: moviesError,
-  // } = useFetch<Movie[]>(() =>
-  //   customFetchMovies({
-  //     query: "",
-  //   })
-  // );
-
   const {
     data: movies,
     loading: moviesLoading,

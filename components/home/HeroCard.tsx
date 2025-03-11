@@ -4,15 +4,13 @@ import { motion } from "framer-motion"; // Import Framer Motion
 import AddToFavButton from "../reusable/AddToFavButton";
 import { MovieProps } from "@/lib/types";
 import { getGenreNames } from "@/lib/utils";
-import { FaStar } from "react-icons/fa6";
 import Link from "next/link";
 import Rating from "../reusable/Rating";
-import FavoriteBtn from "../reusable/FavoriteBtn";
-import { useFavorites } from "@/hooks/useFavorites";
+// import { useFavorites } from "@/hooks/useFavorites";
 
 const HeroCard: React.FC<MovieProps> = ({ movie, genreMap }) => {
-  const { favorites, updateFavorites } = useFavorites();
-  const isFavorite = favorites.includes(movie.id);
+  // const { favorites } = useFavorites();
+  // const isFavorite = favorites.includes(movie.id);
 
   const [showDetails, setShowDetails] = useState(false);
 

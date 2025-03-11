@@ -1,7 +1,7 @@
 import React from "react";
 import HeaderSection from "../reusable/HeaderSection";
 import MoviesList from "./MovieList";
-const NowPlaying = ({ movies }) => {
+const NowPlaying = ({}) => {
   return (
     <div className="container mx-auto my-20">
       <div className="w-full  pr-3">

@@ -19,14 +19,13 @@ const SearchPage = () => {
     refetch,
   } = useFetch(() => customFetchMovies({ query: searchQuery }), false);
 
-  // Fetch movies when query changes OR reset when empty
   useEffect(() => {
     if (initialQuery.trim() !== "") {
       refetch();
     } else {
       refetch();
     }
-  }, [searchQuery]);
+  }, [searchQuery]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="container mx-auto">
@@ -41,9 +40,9 @@ const SearchPage = () => {
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
       {!loading && !error && movies?.length === 0 && <p>No results found.</p>}
-      {!searchQuery.trim() === "" && (
+      {searchQuery.trim() !== "" && (
         <p className="text-center text-lg mt-5">
-          Search results for "{searchQuery}
+          Search results for : <strong>{searchQuery}</strong>
         </p>
       )}
       <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-10">

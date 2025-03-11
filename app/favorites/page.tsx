@@ -2,10 +2,11 @@
 import MovieCard from "@/components/reusable/MovieCard";
 import React, { useEffect, useState } from "react";
 import { fetchMovieDetails } from "@/lib/tmdb";
+import { Movie } from "@/lib/types";
 
 export default function MyFavoritesPage() {
   const [myFav, setMyFav] = useState<number[]>([]);
-  const [favMovies, setFavMovies] = useState<any[]>([]);
+  const [favMovies, setFavMovies] = useState<Movie[]>([]);
 
   // ========== load Saved Favorites =========
   useEffect(() => {

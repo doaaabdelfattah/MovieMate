@@ -82,11 +82,18 @@ export default function Navbar() {
             />
           </div>
           <Link href="/favorites">
-            <button className="cursor-pointer w-10 h-10 rounded-full flex items-center justify-center  bg-light-300 transition-all duratioen-300 gap-2">
+            <button
+              className="cursor-pointer w-10 h-10 rounded-full flex items-center justify-center  bg-light-300 transition-all duratioen-300 gap-2"
+              aria-label="Favorites"
+            >
               <FaHeart size={20} />
             </button>
           </Link>
-          <button className="lg:hidden hover:bg-white/10 p-2 rounded-md  transition-all duratioen-300 cursor-pointer">
+          <button
+            className="lg:hidden hover:bg-white/10 p-2 rounded-md  transition-all duratioen-300 cursor-pointer"
+            arial-label="side menu"
+            title="Open side menu"
+          >
             <GiHamburgerMenu onClick={openMenu} size={25} />
           </button>
         </div>

@@ -22,24 +22,26 @@ const StyledFavoriteBtn = styled.button`
   }
 
   svg {
-    font-size: 1.8rem; 
+    font-size: 1.8rem;
     transition: color 0.3s ease-in-out;
   }
 
   &.active svg {
     color: red;
   }
+`;
 
-`
-
-const FavoriteBtn: React.FC<FavoriteBtnProps> = ({movieId, className}) => {
-const {favorites, updateFavorites} = useFavorites();
-const isFavorite = favorites.includes(movieId);
+const FavoriteBtn: React.FC<FavoriteBtnProps> = ({ movieId }) => {
+  const { favorites, updateFavorites } = useFavorites();
+  const isFavorite = favorites.includes(movieId);
   return (
-  <StyledFavoriteBtn className={`${isFavorite ? "active" :""}`} onClick={()=>updateFavorites(movieId)}>
-    {isFavorite ? <FaHeart/>: <FaRegHeart/>}
-  </StyledFavoriteBtn>
-)
+    <StyledFavoriteBtn
+      className={`${isFavorite ? "active" : ""}`}
+      onClick={() => updateFavorites(movieId)}
+    >
+      {isFavorite ? <FaHeart /> : <FaRegHeart />}
+    </StyledFavoriteBtn>
+  );
 };
 
 export default FavoriteBtn;

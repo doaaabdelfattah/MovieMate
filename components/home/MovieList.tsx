@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react";
 import { fetchMovies } from "@/lib/tmdb";
 import MovieCard from "../reusable/MovieCard";
-
+import { Movie } from "@/lib/types";
 export default function MovieList() {
-  const [movies, setMovies] = useState([]); // Store movies
-  const [currentPage, setCurrentPage] = useState(1); // Track page number
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(null); // Error handling
+  const [movies, setMovies] = useState<Movie[]>([]); // Store movies
+  const [currentPage, setCurrentPage] = useState<number>(1); // Track page number
+  const [loading, setLoading] = useState<boolean>(false); // Loading state
+  const [error, setError] = useState<string | null>(null); // Error handling
 
   useEffect(() => {
     const loadMovies = async () => {
@@ -24,21 +24,20 @@ export default function MovieList() {
 
         setMovies((prevMovies) => {
           const newMovies = response.results.filter(
-            (newMovie) =>
+            (newMovie: Movie) =>
               !prevMovies.some((prevMovie) => prevMovie.id === newMovie.id)
           );
-          return [...prevMovies, ...newMovies]; // ✅ Append movies, don't replace
+          return [...prevMovies, ...newMovies];
         });
       } catch (err) {
-        setError("Failed to fetch movies");
+        setError(err instanceof Error ? err.message : "Failed to fetch movies");
       } finally {
         setLoading(false);
       }
     };
 
     loadMovies();
-  }, [currentPage]); // Runs when `currentPage` changes
-
+  }, [currentPage]);
   return (
     <div>
       {error && <p>{error}</p>}
@@ -52,7 +51,7 @@ export default function MovieList() {
       <button
         className="cursor-pointer text-bold mt-4 p-2 bg-blue-500 text-white rounded"
         onClick={() => setCurrentPage((prev) => prev + 1)}
-        disabled={loading} // Prevent multiple clicks while loading
+        disabled={loading}
       >
         {loading ? "Loading..." : "Load More"}
       </button>

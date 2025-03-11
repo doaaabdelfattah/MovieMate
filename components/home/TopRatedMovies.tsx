@@ -3,8 +3,13 @@ import HeaderSection from "../reusable/HeaderSection";
 import MySwiper from "../reusable/MySwiper";
 import Link from "next/link";
 import { GoArrowRight } from "react-icons/go";
-import { FaArrowRight } from "react-icons/fa6";
-const TopRatedMovies = ({ movies }) => {
+import { Movie } from "@/lib/types";
+
+interface TopRatedMoviesProps {
+  movies: Movie[];
+}
+
+const TopRatedMovies: React.FC<TopRatedMoviesProps> = ({ movies }) => {
   return (
     <div className="container mx-auto my-20">
       <div className="w-full block lg:hidden pr-3">

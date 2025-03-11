@@ -22,19 +22,10 @@ export type MoviesResponse = {
 export interface fetchMoviesProps {
   category: string;
   currentPage?: number;
-  genre? = number[];
+  genre?: number[];
 }
 
 export interface MovieProps {
   movie: Movie;
   genreMap?: Record<number, string>;
-}
-
-export enum Routes {
-  ROOT = "/",
-  MENU = "menu",
-  ABOUT = "about",
-  CONTACT = "contact",
-  AUTH = "auth",
-  CART = "cart",
 }
