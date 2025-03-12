@@ -44,8 +44,8 @@ const useFetch = (
   };
 
   useEffect(() => {
-    if (autoFetch) fetchData();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    if (autoFetch) fetchData(page);
+  }, [page]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadMore = () => {
     if (hasMore && !loading) fetchData(page + 1); // Fetch next page when "Load More" is clicked
