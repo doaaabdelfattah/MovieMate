@@ -17,7 +17,7 @@ const SearchPage = () => {
     loading,
     error,
     refetch,
-  } = useFetch(() => customFetchMovies({ query: searchQuery }), false);
+  } = useFetch(() => customFetchMovies({ query: searchQuery }));
 
   useEffect(() => {
     if (initialQuery.trim() !== "") {

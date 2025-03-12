@@ -32,7 +32,7 @@ const LatestMovies = () => {
       </div>
       <div className="flex w-[85%] mx-auto ">
         {moviesLoading && <SpiralLoader />}
-        <Accoordin movies={movies} />
+        {movies && <Accoordin movies={movies} />}
 
         <div className="hidden lg:flex flex-col md:w-1/3 pr-3">
           <h2 className="text-3xl font-bold border-b pb-4">

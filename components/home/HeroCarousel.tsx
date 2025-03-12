@@ -3,7 +3,9 @@ import { EffectCoverflow } from "swiper/modules";
 import { useRouter } from "next/navigation";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-export const HeroCarousel = ({ movies }) => {
+import { MoviesResponse } from "@/lib/types";
+
+export const HeroCarousel: React.FC<MoviesResponse> = ({ movies }) => {
   const router = useRouter();
   return (
     <section className="page carousel-2-page">

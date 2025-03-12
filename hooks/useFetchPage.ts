@@ -11,7 +11,7 @@ const useFetchPage = (
   fetchFunction: (page: number) => Promise<Movie[]>,
   autoFetch = true
 ) => {
-  const [data, setData] = useState<Movie[]>(null);
+  const [data, setData] = useState<Movie[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState<number>(1);
@@ -47,7 +47,7 @@ const useFetchPage = (
 
   useEffect(() => {
     if (autoFetch) fetchData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadMore = () => {
     if (hasMore && !loading) fetchData(page + 1); // Fetch next page when "Load More" is clicked

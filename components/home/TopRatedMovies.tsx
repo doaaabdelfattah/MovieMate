@@ -47,7 +47,7 @@ const TopRatedMovies = () => {
         </div>
         {moviesLoading && <SpiralLoader />}
         <div className="w-full overflow-hidden">
-          <MySwiper movies={movies} />
+          {movies && <MySwiper movies={movies} />}
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ const SearchBar = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSearch = () => {
-    handleOnClick(); // 🔍 Trigger search
+    handleOnClick();
     inputRef.current?.blur();
   };
 

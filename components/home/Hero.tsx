@@ -1,17 +1,18 @@
 "use client";
 import React from "react";
-import useFetchPage from "@/hooks/useFetchPage";
-import { fetchMoviesWithPage } from "@/lib/tmdb";
+import useFetch from "@/hooks/useFetch";
+import { fetchMoviesCategory } from "@/lib/tmdb";
 import HeroCarousel from "./HeroCarousel";
 import SpiralLoader from "../reusable/SpiralLoader";
 export default function Hero() {
   const {
     data: movies,
     loading: moviesLoading,
-    error: moviesError,
-  } = useFetchPage((page) =>
-    fetchMoviesWithPage({
+    // error: moviesError,
+  } = useFetch((page) =>
+    fetchMoviesCategory({
       query: "",
+      category: "upcoming",
       page,
     })
   );
@@ -25,7 +26,7 @@ export default function Hero() {
       </h1>
 
       {moviesLoading && <SpiralLoader />}
-      {moviesError && <p>Error: {moviesError}</p>}
+      {/* {moviesError && <p>Error: {moviesError}</p>} */}
 
       <div className="w-full">
         <HeroCarousel movies={movies} />
