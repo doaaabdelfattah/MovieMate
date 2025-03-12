@@ -3,7 +3,6 @@ import { EffectCoverflow } from "swiper/modules";
 import { useRouter } from "next/navigation";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-import Link from "next/link";
 export const HeroCarousel = ({ movies }) => {
   const router = useRouter();
   return (

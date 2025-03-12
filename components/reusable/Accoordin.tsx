@@ -1,7 +1,8 @@
+import { MoviesResponse } from "@/lib/types";
 import Image from "next/image";
 import React from "react";
 
-const Accoordin = ({ movies }) => {
+const Accoordin: React.FC<MoviesResponse> = ({ movies }) => {
   return (
     <ul className="accordion">
       {movies?.map((movie) => (

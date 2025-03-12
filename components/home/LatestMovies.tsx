@@ -5,6 +5,7 @@ import { fetchMoviesCategory } from "@/lib/tmdb";
 import Accoordin from "../reusable/Accoordin";
 import Link from "next/link";
 import { GoArrowRight } from "react-icons/go";
+import SpiralLoader from "../reusable/SpiralLoader";
 const LatestMovies = () => {
   const {
     data: movies,
@@ -30,6 +31,7 @@ const LatestMovies = () => {
         </Link>
       </div>
       <div className="flex w-[85%] mx-auto ">
+        {moviesLoading && <SpiralLoader />}
         <Accoordin movies={movies} />
 
         <div className="hidden lg:flex flex-col md:w-1/3 pr-3">

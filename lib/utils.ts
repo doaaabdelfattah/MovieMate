@@ -25,7 +25,7 @@ export function filterMoviesByGenre(
   genreIds: number[], // Accept multiple genres
   limit?: number
 ) {
-  const filteredMovies = movies.results.filter(
+  const filteredMovies = movies.movies.filter(
     (movie) => movie.genre_ids.some((id) => genreIds.includes(id)) // Match at least one genre
   );
 

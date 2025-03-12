@@ -16,7 +16,7 @@ export type Movie = {
 };
 
 export interface MoviesResponse {
-  results: Movie[];
+  movies: Movie[];
 }
 
 export interface fetchMoviesProps {
