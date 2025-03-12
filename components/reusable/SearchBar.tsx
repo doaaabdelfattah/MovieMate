@@ -6,14 +6,21 @@ interface Props {
   placeHolder?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
+  isScroll: boolean;
 }
 
-const SearchBar = ({ handleOnClick, placeHolder, onChange, value }: Props) => {
+const SearchBar = ({
+  handleOnClick,
+  placeHolder,
+  onChange,
+  value,
+  isScroll,
+}: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSearch = () => {
     handleOnClick(); // 🔍 Trigger search
-    inputRef.current?.blur(); // 🚫 Remove focus
+    inputRef.current?.blur();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -23,12 +30,16 @@ const SearchBar = ({ handleOnClick, placeHolder, onChange, value }: Props) => {
   };
 
   return (
-    <div className="flex items-center bg-darkColor border-dark-100 border rounded-full px-5 py-2">
+    <div
+      className={`flex items-center  bg-transparent border rounded-full px-5 py-2 ${
+        isScroll ? " border-mainLight border-[1.5px]" : "border-white"
+      } `}
+    >
       <input
         ref={inputRef} // 📌 Attach ref to input
         type="text"
         placeholder={placeHolder}
-        className="bg-transparent text-light-300 ml-2 outline-none"
+        className="bg-transparent ml-2 placeholder:text-white outline-none"
         value={value}
         onChange={onChange}
         onKeyDown={handleKeyDown} // ⌨️ Listen for Enter key
@@ -38,7 +49,7 @@ const SearchBar = ({ handleOnClick, placeHolder, onChange, value }: Props) => {
         aria-label="Search"
         className="cursor-pointer"
       >
-        <FaMagnifyingGlass className="text-light-300" />
+        <FaMagnifyingGlass className="text-white" />
       </button>
     </div>
   );

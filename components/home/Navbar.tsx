@@ -6,7 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import Link from "next/link";
 import SearchBar from "../reusable/SearchBar";
-
+import { FaMagnifyingGlass } from "react-icons/fa6";
 export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const sideMenuRef = useRef<HTMLDivElement | null>(null);
@@ -45,22 +45,22 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`w-full sm:px-10 px-3 py-2 lg:px-8 xl:px-[8%] flex items-center justify-between z-50 h-[90px] 
+        className={`w-full sm:px-10 px-8 py-2 lg:px-8 xl:px-[8%] flex items-center justify-between z-50  fixed top-0
           ${
             isScroll
-              ? "backdrop-blur-lg text-black top-0  shadow-sm fixed"
-              : "bg-darkColor text-white"
+              ? "backdrop-blur-lg h-[100px]  top-0 bg-mainLight/50  shadow-sm fixed left-0 max-md:px-8"
+              : "bg-gradient-to-b h-[130px] bg-transparent text-lightColor"
           } `}
       >
         <Link
           href="/"
-          className={`text-4xl font-serif font-black${
-            isScroll ? " text-darkColor" : "text-white"
+          className={`md:text-5xl font-serif font-black text-lightColor text-4xl ${
+            isScroll ? " " : ""
           } `}
         >
           MovieMate.
         </Link>
-        <ul className="hidden lg:flex items-center gap-6 lg:gap-8 text-lg py-4">
+        <ul className="hidden lg:flex font-medium items-center gap-6 lg:gap-8 text-lg py-4">
           <li className="slide-up-hover">
             <Link className="menu-style" href="/">
               Home
@@ -72,18 +72,25 @@ export default function Navbar() {
             </Link>
           </li>
         </ul>
-        <div className="flex items-center justify-center gap-4">
-          <div className="">
+        <div className="flex items-center justify-center gap-1 ">
+          <div className="hidden lg:block">
             <SearchBar
               handleOnClick={handleSearchClick}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeHolder="Search for a Movie"
               value={searchQuery}
+              isScroll={isScroll}
             />
           </div>
+          <Link
+            href="/search"
+            className="lg:hidden  cursor-pointer w-10 h-10   rounded-full flex items-center justify-center hover:bg-white/10 transition-all duratioen-300"
+          >
+            <FaMagnifyingGlass />
+          </Link>
           <Link href="/favorites">
             <button
-              className="cursor-pointer w-10 h-10 rounded-full flex items-center justify-center  bg-light-300 transition-all duratioen-300 gap-2"
+              className="cursor-pointer w-10 h-10 rounded-full text-lightColor flex items-center justify-center hover:bg-white/10 transition-all duratioen-300 gap-2"
               aria-label="Favorites"
             >
               <FaHeart size={20} />
@@ -100,7 +107,7 @@ export default function Navbar() {
 
         {/*================ Mobile Menu ====================== */}
         <div
-          className="flex lg:hidden flex-col gap-4 py-10 px-10 fixed -right-64 h-screen w-64 z-50 bg-gray-50 transition duration-700 bottom-0 top-0 text-black"
+          className="flex lg:hidden flex-col gap-4 py-10 px-10 fixed -right-64 h-screen w-64 z-50 bg-lightColor transition duration-700 bottom-0 top-0 text-black"
           ref={sideMenuRef}
         >
           <span
@@ -110,12 +117,12 @@ export default function Navbar() {
             <IoMdCloseCircleOutline size={20} className="cursor-pointer" />
           </span>
           <ul className="">
-            <li className="slide-up-hover">
+            <li className="slide-up-hover-x">
               <Link className="menu-style" href="/" onClick={closeMenu}>
                 Home
               </Link>
             </li>
-            <li className="slide-up-hover">
+            <li className="slide-up-hover-x">
               <Link className="menu-style" href="/movies" onClick={closeMenu}>
                 Discover
               </Link>

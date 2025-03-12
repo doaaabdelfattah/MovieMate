@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { fetchMovies } from "@/lib/tmdb";
 import MovieCard from "../reusable/MovieCard";
 import { Movie } from "@/lib/types";
+
 export default function MovieList() {
   const [movies, setMovies] = useState<Movie[]>([]); // Store movies
   const [currentPage, setCurrentPage] = useState<number>(1); // Track page number

@@ -1,10 +1,11 @@
 "use client";
 
-import { fetchMoviesWithPage } from "@/lib/tmdb";
-
+import { fetchMoviesCategory } from "@/lib/tmdb";
+import useFetch from "@/hooks/useFetch";
 import MovieCard from "@/components/reusable/MovieCard";
 import HeaderSection from "@/components/reusable/HeaderSection";
-import useFetchPage from "@/hooks/useFetchPage";
+// import useFetchPage from "@/hooks/useFetchPage";
+
 export default function MoviesPage() {
   const {
     data: movies,
@@ -13,19 +14,17 @@ export default function MoviesPage() {
 
     loadMore,
     hasMore,
-  } = useFetchPage((page) =>
-    fetchMoviesWithPage({
+  } = useFetch((page) =>
+    fetchMoviesCategory({
       query: "",
+      category: "upcoming",
       page,
     })
   );
 
   return (
-    <section className="container mx-auto relative">
+    <section className="container mx-auto">
       <article className="mt-[100px]">
-        {/* <HeaderSection
-          title={`Movies ${query ? `- Results for "${query}"` : ""}`}
-        /> */}
         <HeaderSection title="Discover Movies" />
       </article>
       {moviesLoading && <p>Loading...</p>}

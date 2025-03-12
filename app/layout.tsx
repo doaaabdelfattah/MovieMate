@@ -20,15 +20,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className="scroll-smooth"
-    >
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
         className={`${outfit.className} ${ovo.className} ${roboto.className} antialiased  leading-8 `}
       >
-        <Navbar />
+        <div className="mb-20">
+          <Navbar />
+        </div>
         {children}
       </body>
     </html>

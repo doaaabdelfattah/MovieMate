@@ -26,7 +26,7 @@ const MySwiper: React.FC<MySwiperProps> = ({ movies }) => {
         1024: { slidesPerView: 5 },
       }}
     >
-      {movies.map((movie) => (
+      {movies?.map((movie) => (
         <SwiperSlide key={movie.id}>
           <Link href={`/movies/${movie.id}`} className="group">
             <div className="relative overflow-hidden rounded-lg">

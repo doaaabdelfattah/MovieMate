@@ -20,7 +20,7 @@ const Title = styled.h2`
   display: block;
   font-weight: 500;
   text-align: left;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   color: white;
   min-width: 15%;
 

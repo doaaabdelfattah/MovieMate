@@ -1,13 +1,11 @@
 "use client";
 import HeaderSection from "../reusable/HeaderSection";
-import MySwiper from "../reusable/MySwiper";
-import Link from "next/link";
-import { GoArrowRight } from "react-icons/go";
 import useFetch from "@/hooks/useFetch";
 import { fetchMoviesCategory } from "@/lib/tmdb";
-import SpiralLoader from "../reusable/SpiralLoader";
-
-const TopRatedMovies = () => {
+import Accoordin from "../reusable/Accoordin";
+import Link from "next/link";
+import { GoArrowRight } from "react-icons/go";
+const LatestMovies = () => {
   const {
     data: movies,
     loading: moviesLoading,
@@ -15,10 +13,11 @@ const TopRatedMovies = () => {
   } = useFetch((page) =>
     fetchMoviesCategory({
       query: "",
-      category: "top_rated",
+      category: "now_playing",
       page,
     })
   );
+  console.log(movies);
   return (
     <div className="container mx-auto my-20">
       <div className="w-full block lg:hidden pr-3 mb-4">
@@ -30,7 +29,9 @@ const TopRatedMovies = () => {
           View All <GoArrowRight />
         </Link>
       </div>
-      <div className="flex justify-center items-center felx-col flex-wrap lg:flex-nowrap lg:flex-row gap-10">
+      <div className="flex w-[85%] mx-auto ">
+        <Accoordin movies={movies} />
+
         <div className="hidden lg:flex flex-col md:w-1/3 pr-3">
           <h2 className="text-3xl font-bold border-b pb-4">
             Discover the Top Rated Movies Everyone&apos;s Talking About!
@@ -45,13 +46,9 @@ const TopRatedMovies = () => {
             View All <GoArrowRight />
           </Link>
         </div>
-        {moviesLoading && <SpiralLoader />}
-        <div className="w-full overflow-hidden">
-          <MySwiper movies={movies} />
-        </div>
       </div>
     </div>
   );
 };
 
-export default TopRatedMovies;
+export default LatestMovies;

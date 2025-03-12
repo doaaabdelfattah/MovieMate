@@ -35,6 +35,7 @@ const SearchPage = () => {
           placeHolder="Search for movies"
           onChange={(e) => setSearchQuery(e.target.value)}
           value={searchQuery}
+          isScroll={false}
         />
       </div>
       {loading && <p>Loading...</p>}

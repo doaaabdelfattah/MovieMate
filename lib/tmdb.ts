@@ -15,7 +15,7 @@ export const TMDB_CONFIG = {
   },
 };
 
-// - - - - - - custom fetch - - - - -
+// ✅ - - - - - - custom fetch - - - - -
 
 export const customFetchMovies = async ({
   query,
@@ -39,6 +39,8 @@ export const customFetchMovies = async ({
   return data.results || [];
 };
 
+// ============= ✅ ✅ ✅ ✅ ✅ ✅
+
 export const fetchMoviesWithPage = async ({
   query,
   page = 1,
@@ -51,6 +53,37 @@ export const fetchMoviesWithPage = async ({
         query
       )}&page=${page}`
     : `${TMDB_CONFIG.BASE_URL}/discover/movie?sort_by=popularity.desc&page=${page}`; // Added page
+
+  console.log("endpoint", endpoint);
+  const response = await fetch(endpoint, {
+    method: "GET",
+    headers: TMDB_CONFIG.headers,
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch movies: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.results || [];
+};
+
+// ============== ✅ ✅ ✅ ✅ ✅ ✅
+
+export const fetchMoviesCategory = async ({
+  query,
+  category = "popular",
+  page = 1,
+}: {
+  query: string;
+  page?: number;
+  category: string;
+}): Promise<Movie[]> => {
+  const endpoint = query
+    ? `${TMDB_CONFIG.BASE_URL}/search/movie?api_key=${
+        TMDB_CONFIG.API_KEY
+      }&query=${encodeURIComponent(query)}&page=${page}`
+    : `${TMDB_CONFIG.BASE_URL}/movie/${category}?api_key=${TMDB_CONFIG.API_KEY}&page=${page}`;
 
   console.log("endpoint", endpoint);
   const response = await fetch(endpoint, {

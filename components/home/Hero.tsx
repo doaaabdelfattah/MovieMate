@@ -1,26 +1,35 @@
+"use client";
 import React from "react";
-import { fetchPopularMovies, fetchGenres } from "@/lib/tmdb";
-import { filterMoviesByGenre } from "@/lib/utils";
-import { MoviesResponse } from "@/lib/types";
-
-import HeroCard from "./HeroCard";
-
-export default async function Hero() {
-  const movies: MoviesResponse = await fetchPopularMovies();
-  const filteredMovies = filterMoviesByGenre(movies, [16], 3);
-
-  const genreMap = await fetchGenres();
+import useFetchPage from "@/hooks/useFetchPage";
+import { fetchMoviesWithPage } from "@/lib/tmdb";
+import HeroCarousel from "./HeroCarousel";
+import SpiralLoader from "../reusable/SpiralLoader";
+export default function Hero() {
+  const {
+    data: movies,
+    loading: moviesLoading,
+    error: moviesError,
+  } = useFetchPage((page) =>
+    fetchMoviesWithPage({
+      query: "",
+      page,
+    })
+  );
 
   return (
-    <div className="relative" id="home">
-      {/* Black overlay */}
-      {/* <div className="absolute inset-0 bg-black opacity-70 z-0"></div> */}
+    <section className=" h-screen w-full flex items-center justify-evenly flex-col">
+      <h1 className="text-white my-10 leading-15 lg:leading-20 mx-auto  text-center text-4xl lg:text-6xl font-bold">
+        Movies for Every Moment
+        <br />
+        Fun for Every Family !
+      </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 md:h-[calc(100vh-90px)] w-full">
-        {filteredMovies.map((movie) => (
-          <HeroCard key={movie.id} movie={movie} genreMap={genreMap} />
-        ))}
+      {moviesLoading && <SpiralLoader />}
+      {moviesError && <p>Error: {moviesError}</p>}
+
+      <div className="w-full">
+        <HeroCarousel movies={movies} />
       </div>
-    </div>
+    </section>
   );
 }
