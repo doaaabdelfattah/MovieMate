@@ -33,13 +33,16 @@ export default function MyFavoritesPage() {
 
   return (
     <div className="container min-h-screen mx-auto">
-      <div className="mt-[200px] flex flex-col gap-10 justify-center items-center ">
-        <div className="flex-1">
-          <HeaderSection title="My favorites" />
+      <div className="mt-5 md:mt-10 flex flex-col gap-10 justify-center items-center">
+        <div className="flex-1 w-full">
+          <HeaderSection
+            title="My Favorites +"
+            subtitle="Your Personal Movie Vault!"
+          />
         </div>
         <div className=" flex justify-center items-center">
           {myFav.length > 0 ? (
-            <div className="grid grid-cols-5 gap-4 p-10">
+            <div className="grid md:grid-cols-3 grid-cols-2 lg:grid-cols-5  gap-4 p-10">
               {favMovies.map((movie) => (
                 <div className="w-full" key={movie.id}>
                   <MovieCard key={movie.id} movie={movie} />

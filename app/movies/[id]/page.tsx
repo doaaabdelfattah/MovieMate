@@ -20,7 +20,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
   }
 
   return (
-    <div className="w-full -mt-20">
+    <div className="w-ful">
       {/* ======= Header ======= */}
 
       <div
@@ -71,19 +71,6 @@ export default async function MoviePage({ params }: MoviePageProps) {
               </h2>
               <p className="text-lg text-left py-4">{movieDetails.overview}</p>
             </article>
-
-            {/* {images?.backdrops.map((image) => {
-                return (
-                  <Image
-                    src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
-                    width={400}
-                    height={500}
-                    alt="poster"
-                    className=""
-                    key={image.file_path}
-                  />
-                );
-              })} */}
           </div>
         </div>
       </div>

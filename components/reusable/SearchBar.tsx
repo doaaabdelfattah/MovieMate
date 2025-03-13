@@ -31,15 +31,15 @@ const SearchBar = ({
 
   return (
     <div
-      className={`flex items-center  bg-transparent border rounded-full px-5 py-2 ${
-        isScroll ? " border-mainLight border-[1.5px]" : "border-white"
+      className={`flex items-center justify-between bg-transparent border flex-1 rounded-full px-5 py-2 ${
+        isScroll ? " border-accentColor border-[1.5px]" : "border-accentColor"
       } `}
     >
       <input
         ref={inputRef} // 📌 Attach ref to input
         type="text"
         placeholder={placeHolder}
-        className="bg-transparent ml-2 placeholder:text-white outline-none"
+        className="bg-transparent ml-2 w-full placeholder:text-white outline-none"
         value={value}
         onChange={onChange}
         onKeyDown={handleKeyDown} // ⌨️ Listen for Enter key

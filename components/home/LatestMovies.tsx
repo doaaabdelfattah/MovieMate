@@ -22,7 +22,10 @@ const LatestMovies = () => {
   return (
     <div className="container  mx-auto my-20">
       <div className="w-full block lg:hidden pr-3 mb-4">
-        <HeaderSection title="Top Rated Movies" />
+        <HeaderSection
+          title="Now Playing"
+          subtitle="🎞️ Lights, Camera, Action!"
+        />
         <Link
           href="/movies"
           className=" text-gray-400 hover:text-white duration-200 transition-all justify-end flex items-center gap-1 hover:gap-2 text-right "
@@ -37,10 +40,11 @@ const LatestMovies = () => {
         </div>
         <div className="hidden lg:flex flex-col md:w-1/3 pr-3">
           <h2 className="text-3xl font-bold border-b pb-4">
-            Discover the Top Rated Movies Everyone&apos;s Talking About!
+            Experience the latest films hitting the big screen!
           </h2>
           <span className="text-gray-500 py-4 inline-block font-medium">
-            Most watched movies by days
+            These fresh releases are making waves in theaters right now—don’t
+            miss out on the excitement! 🍿✨
           </span>
           <Link
             href="/movies"

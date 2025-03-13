@@ -21,31 +21,12 @@ const LoadMoreButton = styled.button`
   overflow: hidden;
   transition: all 0.3s ease-in-out;
 
-  // &:before,
-  // &:after {
-  //   content: "";
-  //   position: absolute;
-  //   width: 100%;
-  //   height: 2px;
-  //   background: #ffcc00;
-  //   top: 50%;
-  // }
-
-  // &:before {
-  //   top: 50%;
-  //   margin-left: 10px;
-  // }
-
-  // &:after {
-  //   right: -50px;
-  // }
-
   &:hover {
     background: #442b61;
   }
 
   &:disabled {
-    background: #ccc;
+    background: #4f3271;
     cursor: not-allowed;
   }
 `;

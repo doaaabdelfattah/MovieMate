@@ -17,9 +17,9 @@ const Title = styled.h2`
   line-height: 1.25;
   position: relative;
   display: block;
-  font-weight: 500;
+  font-weight: 600;
   text-align: left;
-  // margin-bottom: 5px;
+
   color: white;
   min-width: 15%;
 
@@ -28,15 +28,16 @@ const Title = styled.h2`
     position: absolute;
     top: 50%;
     width: 100%;
-    height: 1px;
+    height: 1.5px;
     margin-left: 10px;
-    background-color: #e2e5ef;
+    background-color: #ab6cf4;
     opacity: 0.5;
   }
 `;
 
 const Subtitle = styled.h2`
-  font-size: clamp(1rem, 2.5vw, 1.8rem); /* Adjust subtitle size */
+  font-size: clamp(0.5rem, 2.1vw, 1.5rem);
+  // font-size: 1.2rem;
   font-weight: 300;
   color: #cfd4e6;
 `;

@@ -1,18 +1,11 @@
-import { Outfit, Ovo, Roboto } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-const outfit = Outfit({
+
+const opensans = Open_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-const ovo = Ovo({
-  subsets: ["latin"],
-  weight: ["400"],
-});
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export default function RootLayout({
@@ -23,9 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
-        className={`${outfit.className} ${ovo.className} ${roboto.className} antialiased min-h-screen flex flex-col justify-between leading-8 `}
+        className={`${opensans.className} antialiased min-h-screen flex flex-col justify-between leading-8 `}
       >
-        <div className="mb-20">
+        <div className="">
           <Navbar />
         </div>
         <main className="flex-1">{children}</main>

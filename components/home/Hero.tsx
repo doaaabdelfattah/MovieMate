@@ -28,7 +28,7 @@ export default function Hero() {
   console.log(movies);
   return (
     <section
-      className=" h-screen w-full flex items-center justify-evenly flex-col"
+      className="h-screen w-full flex items-center justify-evenly flex-col"
       id="top"
     >
       {/* ====== gradient effect======= */}
@@ -36,11 +36,12 @@ export default function Hero() {
       <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
 
       {/* ========= main header */}
-      <h1 className="text-white my-10 leading-15 lg:leading-20 mx-auto  text-center text-4xl lg:text-6xl font-bold">
-        Movies for Every Moment
-        <br />
-        Fun for Every Family !
-      </h1>
+      <header>
+        <h1 className="text-white leading-15 lg:leading-20 mx-auto  text-center text-4xl lg:text-6xl font-black">
+          Movies for Every Moment
+          <span className="block">Fun for Every Family !</span>
+        </h1>
+      </header>
 
       {moviesLoading && <SpiralLoader />}
       {moviesError && <p>Error: {moviesError}</p>}

@@ -29,7 +29,7 @@ const SearchPage = () => {
 
   return (
     <div className="container mx-auto">
-      <div className="flex items-center justify-center mt-10">
+      <div className="flex items-center justify-center mx-auto w-1/2">
         <SearchBar
           handleOnClick={() => refetch()}
           placeHolder="Search for movies"

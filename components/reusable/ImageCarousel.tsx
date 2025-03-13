@@ -17,7 +17,6 @@ interface ImageCarouselProps {
 }
 
 const ImageCarousel = ({ slides }: ImageCarouselProps) => {
-  console.log(slides);
   return (
     <section className="image-carousel image-carousel-container">
       <Swiper

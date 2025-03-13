@@ -13,20 +13,19 @@ const Footer = () => {
         <div className="lg:w-1/3 mx-12 w-full flex flex-col">
           <Link
             href="/"
-            className={`md:text-5xl font-serif font-black text-lightColor text-4xl `}
+            className={`md:text-5xl font-black text-lightColor text-4xl `}
           >
-            MovieMate.
+            <span className="letter-coloring">M</span>
+            ovie<span className="letter-coloring">M</span>ate.
           </Link>
-          <span className="text-mainLight">
-            Cinema Nights, Family Delights!
-          </span>
+          <span className="text-white/50">Cinema Nights, Family Delights!</span>
         </div>
-        <div className="w-full lg:w-2/3 py-10 flex items-center  justify-around px-2 max-sm:grid max-sm:grid-cols-1 max-sm:items-center gap-10 ">
+        <div className="w-full lg:w-2/3 py-10 flex items-center  justify-around px-2 max-sm:grid max-sm:grid-cols-1 max-sm:items-center gap-5 ">
           {/* first Section =================== */}
 
-          <div className="flex flex-col text-left gap-4">
+          <div className="flex flex-col text-left">
             <h2 className="text-2xl ">Useful Links</h2>
-            <ul className="text-md gap-3 flex flex-col tracking-wider">
+            <ul className="text-md gap-2 flex flex-col tracking-wider">
               <li className="slide-up-hover flex items-center gap-1">
                 <HiArrowSmRight /> <Link href="/">Home</Link>
               </li>

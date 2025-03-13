@@ -8,6 +8,7 @@ import HeaderSection from "@/components/reusable/HeaderSection";
 import SearchBar from "@/components/reusable/SearchBar";
 import { useEffect, useState } from "react";
 import LoadMore from "@/components/reusable/LoadMore";
+import SpiralLoader from "@/components/reusable/SpiralLoader";
 
 export default function MoviesPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -32,12 +33,12 @@ export default function MoviesPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
   return (
-    <section className="container mx-auto">
-      <div className="mt-[200px] flex justify-center gap-4 items-center ">
-        <div className="flex-1">
+    <section className="container mx-auto ">
+      <div className="flex justify-center gap-4 my-5 items-center ">
+        <div className="md:w-2/3 w-1/2">
           <HeaderSection title="Discover Movies" />
         </div>
-        <div>
+        <div className="flex-1">
           <SearchBar
             handleOnClick={() => refetch()}
             placeHolder="Search for movies"
@@ -47,16 +48,17 @@ export default function MoviesPage() {
           />
         </div>
       </div>
-      {moviesLoading && <p>Loading...</p>}
+      {moviesLoading && <SpiralLoader />}
       {moviesError && <p>Error: {moviesError}</p>}
       <div>
-        <ul className="grid grid-cols-5 gap-4 p-10">
+        <ul className="grid md:grid-cols-3 grid-cols-2 lg:grid-cols-5  gap-4 p-10">
           {movies?.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </ul>
-
-        {hasMore && <LoadMore onClick={loadMore} loading={moviesLoading} />}
+        <div className="mb-10">
+          {hasMore && <LoadMore onClick={loadMore} loading={moviesLoading} />}
+        </div>
       </div>
     </section>
   );
