@@ -18,6 +18,7 @@ const Accoordin: React.FC<MoviesResponse> = ({ movies }) => {
               height={550}
               width={400}
               className=""
+              quality={80}
             />
           </Link>
         </li>

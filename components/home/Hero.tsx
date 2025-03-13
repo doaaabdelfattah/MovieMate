@@ -46,7 +46,9 @@ export default function Hero() {
       {moviesLoading && <SpiralLoader />}
       {moviesError && <p>Error: {moviesError}</p>}
 
-      <div className="w-full">{movies && <HeroCarousel movies={movies} />}</div>
+      <div className="w-full h-[500px]">
+        {movies && <HeroCarousel movies={movies} />}
+      </div>
     </section>
   );
 }
