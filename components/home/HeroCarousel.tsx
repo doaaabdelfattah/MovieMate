@@ -8,7 +8,7 @@ import { MoviesResponse } from "@/lib/types";
 export const HeroCarousel: React.FC<MoviesResponse> = ({ movies }) => {
   const router = useRouter();
   return (
-    <section className="page carousel-2-page">
+    <section className="carousel-3d carousel-3d-container">
       <Swiper
         grabCursor
         centeredSlides

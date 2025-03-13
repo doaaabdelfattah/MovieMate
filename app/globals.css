@@ -10,6 +10,7 @@
   /* --color-darkColor: #0F0D23; */
   --color-mainDark: #0a0c17;
   --color-mainLight: #373956;
+  --color-accent: #ac6df4;
 
   --color-lightColor: #ffffff;
 
@@ -101,7 +102,7 @@ body {
 }
 
 /* ============== Carousel Style --------- */
-.page.carousel-2-page {
+.carousel-3d.carousel-3dcontainer {
   font-size: 14px;
   color: #010101;
   margin: 0;
@@ -113,12 +114,12 @@ body {
   align-items: center;
 }
 
-.swiper {
+.carousel-3d .swiper {
   padding-top: 50px;
   padding-bottom: 140px;
 }
 
-.swiper .swiper-slide {
+.carousel-3d .swiper .swiper-slide {
   background-position: center;
   background-size: cover;
   border-radius: 10px;
@@ -130,7 +131,7 @@ body {
 }
 /* Medium screens (tablets, 768px and below) */
 @media (max-width: 768px) {
-  .swiper .swiper-slide {
+  .carousel-3d .swiper .swiper-slide {
     width: 220px;
     height: 350px;
   }
@@ -138,7 +139,7 @@ body {
 
 /* Small screens (phones, 480px and below) */
 @media (max-width: 480px) {
-  .swiper .swiper-slide {
+  .carousel-3d .swiper .swiper-slide {
     width: 180px;
     height: 280px;
   }
@@ -194,4 +195,87 @@ body {
 .accordion li,
 .accordion li img {
   transition: 0.3s;
+}
+
+/* -------------------- Image Carousel Style ----------------------- */
+
+.image-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 0 8vw;
+  color: #f9f9f9;
+}
+
+.image-carousel .swiper a {
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #717171;
+  font-weight: 500;
+  background: #fff;
+  /* border-radius: 3.125rem; */
+  margin: 0 auto;
+  padding: 10px 26px;
+  font-size: 0.9rem;
+  transition: 0.3s ease-in-out;
+}
+
+.image-carousel .swiper {
+  width: 100%;
+  /* max-width: 800px; */
+  height: 450px;
+}
+
+.image-carousel .swiper-slide {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+}
+
+/* .image-carousel .swiper-slide a:hover {
+  color: #005baa;
+} */
+
+/* .swiper-slide div {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(rgb(0 0 0 / 0%) 55%, rgb(0 0 0 / 80%));
+  transition: 0.25s;
+  opacity: 0;
+  align-self: stretch;
+  padding-bottom: 70px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+} */
+
+/* .image-carousel .swiper-slide-active div {
+  opacity: 1;
+}
+
+.image-carousel .swiper-slide > div > div {
+  translate: 0 100px;
+  transition: 0.3s;
+}
+
+.image-carousel .swiper-slide-active > div > div {
+  translate: 0;
+}
+
+.image-carousel .swiper-pagination-bullet,
+.swiper-pagination-bullet-active {
+  background: #fff !important;
+} */
+
+.image-carousel .swiper-pagination {
+  display: none;
 }

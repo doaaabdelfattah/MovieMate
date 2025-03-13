@@ -69,23 +69,32 @@ export const fetchMoviesWithPage = async ({
 };
 
 // ============== ✅ ✅ ✅ ✅ ✅ ✅
-
 export const fetchMoviesCategory = async ({
   query,
-  category = "popular",
+  category = "discover", // Default to "discover"
   page = 1,
 }: {
   query: string;
   page?: number;
-  category: string;
+  category?: string;
 }): Promise<Movie[]> => {
-  const endpoint = query
-    ? `${TMDB_CONFIG.BASE_URL}/search/movie?api_key=${
-        TMDB_CONFIG.API_KEY
-      }&query=${encodeURIComponent(query)}&page=${page}`
-    : `${TMDB_CONFIG.BASE_URL}/movie/${category}?api_key=${TMDB_CONFIG.API_KEY}&page=${page}`;
+  let endpoint;
 
-  console.log("endpoint", endpoint);
+  if (query) {
+    // If there's a query, search for movies
+    endpoint = `${TMDB_CONFIG.BASE_URL}/search/movie?api_key=${
+      TMDB_CONFIG.API_KEY
+    }&query=${encodeURIComponent(query)}&page=${page}`;
+  } else if (category === "discover") {
+    // Use the discover endpoint for all available movies
+    endpoint = `${TMDB_CONFIG.BASE_URL}/discover/movie?api_key=${TMDB_CONFIG.API_KEY}&page=${page}`;
+  } else {
+    // Fetch movies by specific category (popular, top_rated, upcoming, etc.)
+    endpoint = `${TMDB_CONFIG.BASE_URL}/movie/${category}?api_key=${TMDB_CONFIG.API_KEY}&page=${page}`;
+  }
+
+  console.log("Fetching from:", endpoint);
+
   const response = await fetch(endpoint, {
     method: "GET",
     headers: TMDB_CONFIG.headers,
@@ -96,7 +105,36 @@ export const fetchMoviesCategory = async ({
   }
 
   const data = await response.json();
-  return data.results || [];
+  const movies = data.results || [];
+
+  // Define terms to exclude
+  const excludedTerms = ["sex", "nudity", "erotic", "clitoris"];
+
+  // Filter out movies with descriptions containing excluded terms
+  const filteredMovies = movies.filter((movie: Movie) => {
+    const description = movie.overview.toLowerCase();
+    return !excludedTerms.some((term) => description.includes(term));
+  });
+
+  return filteredMovies;
+};
+
+// ==========
+export const fetchMovieImages = async (movieId: number) => {
+  const response = await fetch(
+    `${TMDB_CONFIG.BASE_URL}/movie/${movieId}/images`,
+    {
+      method: "GET",
+      headers: TMDB_CONFIG.headers, // Ensure headers contain Authorization
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch images: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data; // Returns { backdrops: [], posters: [], logos: [] }
 };
 
 // - - - - - -  - - Dynamic FETCH Movies - - - - - - - - - - -

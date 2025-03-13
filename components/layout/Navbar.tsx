@@ -49,7 +49,7 @@ export default function Navbar() {
           ${
             isScroll
               ? "backdrop-blur-lg h-[100px]  top-0 bg-mainLight/50  shadow-sm fixed left-0 max-md:px-8"
-              : "bg-gradient-to-b h-[130px] bg-transparent text-lightColor"
+              : "bg-gradient-to-b h-[150px] from-mainDark/50 to-transparent text-lightColor"
           } `}
       >
         <Link

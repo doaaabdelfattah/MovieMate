@@ -1,6 +1,7 @@
 import AddToFavButton from "@/components/reusable/AddToFavButton";
+import ImageCarousel from "@/components/reusable/ImageCarousel";
 import Rating from "@/components/reusable/Rating";
-import { fetchMovieDetails } from "@/lib/tmdb";
+import { fetchMovieDetails, fetchMovieImages } from "@/lib/tmdb";
 import Image from "next/image";
 
 interface MoviePageProps {
@@ -10,12 +11,8 @@ interface MoviePageProps {
 export default async function MoviePage({ params }: MoviePageProps) {
   const { id } = await params;
   const movieId = Number(id);
+  const images = await fetchMovieImages(movieId);
 
-  // const movieId = Number(params.id);
-
-  if (isNaN(movieId)) {
-    return <h1>Invalid Movie ID</h1>;
-  }
   const movieDetails = await fetchMovieDetails(movieId);
 
   if (isNaN(movieId)) {
@@ -23,60 +20,84 @@ export default async function MoviePage({ params }: MoviePageProps) {
   }
 
   return (
-    <div className="w-full ">
+    <div className="w-full -mt-20">
+      {/* ======= Header ======= */}
+
       <div
-        className="w-full h-[300px] bg-red-200 overflow-hidden object-top bg-fixed bg-cover bg-center"
+        className="w-full h-[500px]"
         style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path})`,
+          backgroundImage: `url(https://image.tmdb.org/t/p/original${movieDetails.backdrop_path})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
-        {/* <Image
-          src={`https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`}
-          width={500}
-          height={500}
-          alt="poster"
-          className="w-full h-full object-cover bg-scroll -pt-10"
-        /> */}
+        {" "}
+        {/* <div className="absolute inset-0 bg-black opacity-30 z-0"></div> */}
       </div>
-      <div className="container mx-auto p-5">
-        <div className="flex flex-col md:flex-row gap-10 h-[700px] mt-20">
+
+      {/* ======= Page content */}
+      <div className="container mx-auto">
+        <div className="flex flex-col lg:flex-row gap-10 -mt-20">
           {/* ========== Left : Poster */}
-          <div
-            className=" w-full md:w-1/3 bg-cover bg-center cursor-pointer flex items-start shadow-lg
-      
-      "
-          >
+          <div className=" w-full lg:w-1/3 flex items-center justify-center shadow-lg ">
             <Image
-              src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
+              src={`https://image.tmdb.org/t/p/original${movieDetails.poster_path}`}
               width={500}
               height={750}
               alt="poster"
-              className="w-full h-auto"
+              className=""
+              priority
             />
           </div>
 
-          {/* ========== Right : Movie Data */}
-          <div className=" w-full md:w-2/3 px-5 mt-10 flex flex-col items-start gap-1">
-            <h1 className="text-4xl font-black">{movieDetails.title}</h1>
+          {/* ========== Right : Movie Data ======== */}
+          <div className="w-full lg:w-2/3 px-5 mt-10 flex flex-col items-start justify-center">
+            <h1 className="text-5xl font-black">{movieDetails.title}</h1>
             <div className="flex gap-6 text-normal font-light">
               {movieDetails.genres
                 .map((genre: { name: string }) => genre.name)
                 .join(" | ")}
             </div>
 
-            <div className="flex items-center justify-between gap-10">
+            <div className="flex items-center justify-between my-2 gap-10">
               <Rating vote={movieDetails.vote_average} />
               {/* <FavoriteBtn movieId={movieDetails.id}/> */}
               <AddToFavButton movieId={movieId} type="secondary" />
             </div>
             <article>
-              <h2 className="font-semibold text-xl border-b border-white/50 pb-3 block">
+              <h2 className="font-semibold text-xl border-b-[1.5px] border-white/50 pb-2">
                 {movieDetails.tagline}
               </h2>
-              <p className="text-md text-left py-3">{movieDetails.overview}</p>
+              <p className="text-lg text-left py-4">{movieDetails.overview}</p>
             </article>
+
+            {/* {images?.backdrops.map((image) => {
+                return (
+                  <Image
+                    src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
+                    width={400}
+                    height={500}
+                    alt="poster"
+                    className=""
+                    key={image.file_path}
+                  />
+                );
+              })} */}
           </div>
         </div>
+      </div>
+      <div className="w-full my-30">
+        {images?.backdrops && (
+          <ImageCarousel
+            slides={images.backdrops.map(
+              (img: { file_path: string }, index: number) => ({
+                image: `https://image.tmdb.org/t/p/original${img.file_path}`,
+                title: `Slider-Image-${index}`,
+              })
+            )}
+          />
+        )}
       </div>
     </div>
   );

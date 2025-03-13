@@ -1,32 +1,52 @@
 "use client";
 
 import { fetchMoviesCategory } from "@/lib/tmdb";
+// import { fetchMoviesCategorySafe } from "@/lib/tmdb";
 import useFetch from "@/hooks/useFetch";
 import MovieCard from "@/components/reusable/MovieCard";
 import HeaderSection from "@/components/reusable/HeaderSection";
-// import useFetchPage from "@/hooks/useFetchPage";
+import SearchBar from "@/components/reusable/SearchBar";
+import { useEffect, useState } from "react";
+import LoadMore from "@/components/reusable/LoadMore";
 
 export default function MoviesPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const {
     data: movies,
     loading: moviesLoading,
     error: moviesError,
-
+    refetch,
     loadMore,
     hasMore,
   } = useFetch((page) =>
     fetchMoviesCategory({
-      query: "",
-      category: "upcoming",
+      query: searchQuery,
+      category: "discover",
       page,
     })
   );
 
+  useEffect(() => {
+    refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery]);
   return (
     <section className="container mx-auto">
-      <article className="mt-[100px]">
-        <HeaderSection title="Discover Movies" />
-      </article>
+      <div className="mt-[200px] flex justify-center gap-4 items-center ">
+        <div className="flex-1">
+          <HeaderSection title="Discover Movies" />
+        </div>
+        <div>
+          <SearchBar
+            handleOnClick={() => refetch()}
+            placeHolder="Search for movies"
+            onChange={(e) => setSearchQuery(e.target.value)}
+            value={searchQuery}
+            isScroll={false}
+          />
+        </div>
+      </div>
       {moviesLoading && <p>Loading...</p>}
       {moviesError && <p>Error: {moviesError}</p>}
       <div>
@@ -36,15 +56,7 @@ export default function MoviesPage() {
           ))}
         </ul>
 
-        {hasMore && (
-          <button
-            className="cursor-pointer bg-amber-300 p-3"
-            onClick={loadMore}
-            disabled={moviesLoading}
-          >
-            Load More
-          </button>
-        )}
+        {hasMore && <LoadMore onClick={loadMore} loading={moviesLoading} />}
       </div>
     </section>
   );

@@ -30,7 +30,11 @@ const LatestMovies = () => {
           View All <GoArrowRight />
         </Link>
       </div>
-      <div className="flex justify-between gap-10 w-[85%] mx-auto ">
+      <div className="flex justify-between items-center gap-10 w-[85%] mx-auto ">
+        {moviesLoading && <SpiralLoader />}
+        <div className="  flex justify-center items-center">
+          {movies && <Accoordin movies={movies} />}
+        </div>
         <div className="hidden lg:flex flex-col md:w-1/3 pr-3">
           <h2 className="text-3xl font-bold border-b pb-4">
             Discover the Top Rated Movies Everyone&apos;s Talking About!
@@ -44,10 +48,6 @@ const LatestMovies = () => {
           >
             View All <GoArrowRight />
           </Link>
-        </div>
-        {moviesLoading && <SpiralLoader />}
-        <div className="  flex justify-center items-center">
-          {movies && <Accoordin movies={movies} />}
         </div>
       </div>
     </div>

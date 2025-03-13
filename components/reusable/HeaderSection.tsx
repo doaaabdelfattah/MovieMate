@@ -10,7 +10,6 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   overflow: hidden;
   width: 100%;
-  margin-bottom: 20px;
 `;
 
 const Title = styled.h2`
@@ -20,7 +19,7 @@ const Title = styled.h2`
   display: block;
   font-weight: 500;
   text-align: left;
-  margin-bottom: 5px;
+  // margin-bottom: 5px;
   color: white;
   min-width: 15%;
 
