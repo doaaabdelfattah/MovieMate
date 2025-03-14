@@ -61,7 +61,6 @@ const useFetchByGenre = (
     setPage(1);
     fetchMovies(1, currentGenreId, newSortBy);
   };
-
   return {
     movies,
     loading,

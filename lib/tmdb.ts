@@ -47,7 +47,7 @@ export const fetchMoviesWithPage = async ({
 }: {
   query: string;
   page?: number;
-}): Promise<Movie[]> => {
+}): Promise<{ movies: Movie[]; total_pages: number }> => {
   const endpoint = query
     ? `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(
         query

@@ -21,7 +21,7 @@ const LatestMovies = () => {
   //   })
   // );
   const { movies, loading } = useFetchByGenre(16);
-  console.log(movies);
+
   return (
     <div className="container  mx-auto my-20">
       <div className="w-full block lg:hidden pr-3 mb-4">

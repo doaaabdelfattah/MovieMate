@@ -1,31 +1,32 @@
 "use client";
-import React, { useEffect } from "react";
-import useFetch from "@/hooks/useFetch";
-import { fetchMoviesCategory } from "@/lib/tmdb";
+// import React, { useEffect } from "react";
+// import useFetch from "@/hooks/useFetch";
+// import { fetchMoviesCategory } from "@/lib/tmdb";
 
 import SpiralLoader from "../reusable/SpiralLoader";
+import HeroSwiper from "../reusable/HeroSwiper";
+import useFetchByGenre from "@/hooks/useFetchByGenre";
 
-import HeroCarousel from "./HeroCarousel";
+// import HeroCarousel from "./HeroCarousel";
 export default function Hero() {
-  const {
-    data: movies,
-    loading: moviesLoading,
-    error: moviesError,
-    loadMore,
-    // error: moviesError,
-  } = useFetch((page) =>
-    fetchMoviesCategory({
-      query: "",
-      category: "popular",
-      page,
-    })
+  // const {
+  //   data: movies,
+  //   loading: moviesLoading,
+  //   error: moviesError,
+  //   // error: moviesError,
+  // } = useFetch((page) =>
+  //   fetchMoviesCategory({
+  //     query: "",
+  //     category: "popular",
+  //     page,
+  //   })
+  // );
+  const { movies, loading: moviesLoading } = useFetchByGenre(
+    10751,
+    "popularity.desc"
   );
-
-  useEffect(() => {
-    if (movies.length < 5 && !moviesLoading) {
-      loadMore();
-    }
-  }, [movies, moviesLoading]); // eslint-disable-line react-hooks/exhaustive-deps
+  const validMovies = movies.filter((movie) => movie.vote_average > 0);
+  console.log("Movies before passing to HeroSwiper:", movies);
 
   return (
     <section
@@ -45,12 +46,13 @@ export default function Hero() {
       </header>
 
       {moviesLoading && <SpiralLoader />}
-      {moviesError && <p>Error: {moviesError}</p>}
+      {/* {moviesError && <p>Error: {moviesError}</p>} */}
       {/* <div className="w-full">
         <FullSwiper />
       </div> */}
-      <div className="w-full">
-        {movies && <HeroCarousel movies={movies.slice(0, 5)} />}
+      <div className="w-full h-[500px]">
+        <HeroSwiper movies={validMovies} />
+        {/* {movies && <HeroCarousel movies={movies.slice(0, 5)} />} */}
       </div>
       {/* {movies && <CoverFlowSwiper movies={movies} />} */}
     </section>

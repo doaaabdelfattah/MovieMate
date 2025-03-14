@@ -17,18 +17,21 @@ const HeroSwiper: React.FC<MySwiperProps> = ({ movies }) => {
   return (
     <Swiper
       navigation={true}
+      loop={true}
       modules={[Navigation]}
-      className="mySwiper"
-      spaceBetween={10}
+      className="h-full"
+      spaceBetween={15}
       slidesPerView={5}
       breakpoints={{
-        320: { slidesPerView: 2 },
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 5 },
+        320: { slidesPerView: 1, spaceBetween: 10 }, // Mobile (small screens)
+        480: { slidesPerView: 2, spaceBetween: 10 }, // Small tablets
+        640: { slidesPerView: 3, spaceBetween: 15 }, // Tablets
+        1024: { slidesPerView: 4, spaceBetween: 20 }, // Laptops
+        1280: { slidesPerView: 5, spaceBetween: 10 }, // Large screens
       }}
     >
       {movies.map((movie) => (
-        <SwiperSlide key={movie.id}>
+        <SwiperSlide key={movie.id} className="h-full">
           <HeroCard movie={movie} />
         </SwiperSlide>
       ))}
