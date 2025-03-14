@@ -5,6 +5,7 @@ import { customFetchMovies } from "@/lib/tmdb";
 import { useSearchParams } from "next/navigation";
 import MovieCard from "@/components/reusable/MovieCard";
 import SearchBar from "@/components/reusable/SearchBar";
+import SpiralLoader from "@/components/reusable/SpiralLoader";
 
 const SearchPage = () => {
   const searchParams = useSearchParams();
@@ -38,7 +39,7 @@ const SearchPage = () => {
           isScroll={false}
         />
       </div>
-      {loading && <p>Loading...</p>}
+      {loading && <SpiralLoader />}
       {error && <p>Error: {error}</p>}
       {!loading && !error && movies?.length === 0 && <p>No results found.</p>}
       {searchQuery.trim() !== "" && (

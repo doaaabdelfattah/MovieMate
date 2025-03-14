@@ -14,8 +14,6 @@ export const fetchMoviesByGenre = async (
 
   const endpoint = `${TMDB_CONFIG.BASE_URL}/discover/movie?api_key=${TMDB_CONFIG.API_KEY}&with_genres=${genreId}&page=${page}&sort_by=${sortBy}`;
 
-  console.log("Fetching movies by genre from:", endpoint);
-
   const response = await fetch(endpoint, {
     method: "GET",
     headers: TMDB_CONFIG.headers,

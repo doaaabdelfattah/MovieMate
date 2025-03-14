@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
+    <html lang="en" className="scroll-smooth">
       <body
         className={`${opensans.className} antialiased min-h-screen flex flex-col justify-between leading-8 `}
         style={{ fontFamily: "Open Sans, Arial, sans-serif" }}

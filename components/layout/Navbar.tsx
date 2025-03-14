@@ -12,7 +12,6 @@ export default function Navbar() {
   const pathname = usePathname();
   const isMovieDetailPage = /^\/movies\/\d+$/.test(pathname);
 
-  console.log(pathname);
   const handleSearchClick = () => {
     if (searchQuery.trim() !== "") {
       router.push(`/search?query=${encodeURIComponent(searchQuery)}`);
@@ -45,7 +44,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`w-full px-[10%] mx-auto flex items-center justify-between z-50  top-0
+        className={`w-full px-10 max-sm:px-5 mx-auto flex items-center justify-between z-50  top-0
         ${isMovieDetailPage ? "fixed" : ""}
           ${
             isScroll
@@ -70,11 +69,16 @@ export default function Navbar() {
           </li>
           <li className="slide-up-hover">
             <Link className="hover:text-accentColor" href="/movies">
-              Discover
+              Discover Movies
+            </Link>
+          </li>
+          <li className="slide-up-hover">
+            <Link className="hover:text-accentColor" href="/favorites">
+              Favorites
             </Link>
           </li>
         </ul>
-        <div className="flex items-center justify-center gap-1 ">
+        <div className="flex items-center justify-center gap-4 max-sm:gap-2 ">
           {!["/search", "/movies"].includes(pathname) && (
             <div className="hidden lg:block">
               <SearchBar
@@ -89,21 +93,27 @@ export default function Navbar() {
 
           <Link
             href="/search"
-            className="lg:hidden  cursor-pointer w-10 h-10   rounded-full flex items-center justify-center hover:text-accentColor  transition-all duratioen-300"
+            className="lg:hidden  cursor-pointer  rounded-full flex items-center justify-center hover:text-accentColor  transition-all duratioen-300"
           >
             {/* <FaMagnifyingGlass /> */}
             <Search />
           </Link>
-          <Link href="/favorites">
+          <Link href="/favorites" className="lg:hidden">
             <button
-              className="cursor-pointer w-10 h-10 rounded-full text-lightColor flex items-center justify-center hover:bg-accentColor transition-all duratioen-300 gap-2"
+              className="cursor-pointer rounded-full text-lightColor flex items-center justify-center  transition-all group duratioen-300 gap-2"
               aria-label="Favorites"
             >
-              <Heart fill="#fff" size={25} />
+              <Heart
+                className="group-hover:fill-accentColor group-hover:stroke-accentColor "
+                size={25}
+              />{" "}
+              <span className="hidden lg:block hover:text-accentColor">
+                My Favorites
+              </span>
             </button>
           </Link>
           <button
-            className="lg:hidden hover:text-accentColor p-2 rounded-md  transition-all duratioen-300 cursor-pointer"
+            className="lg:hidden hover:text-accentColor rounded-md  transition-all duratioen-300 cursor-pointer"
             arial-label="side menu"
             title="Open side menu"
           >
@@ -139,7 +149,7 @@ export default function Navbar() {
                 href="/movies"
                 onClick={closeMenu}
               >
-                Discover
+                Discover Movies
               </Link>
             </li>
           </ul>

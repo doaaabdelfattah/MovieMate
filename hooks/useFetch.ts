@@ -28,7 +28,7 @@ const useFetch = (
         (movie: Movie) =>
           movie.genre_ids?.some((id: number) =>
             FAMILY_FRIENDLY_GENRES.includes(id)
-          ) && movie.vote_average > 0 // ✅ Exclude movies with 0 rating
+          ) && movie.vote_average > 0
       );
 
       setData((prevData) => {
@@ -54,7 +54,7 @@ const useFetch = (
   useEffect(() => {
     if (autoFetch) fetchData(1, currentCategory);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentCategory]); // ✅ Triggers re-fetch on category change
+  }, [currentCategory]);
 
   const loadMore = () => {
     if (hasMore && !loading) fetchData(page + 1, currentCategory);
@@ -62,7 +62,7 @@ const useFetch = (
 
   const changeCategory = (newCategory: string) => {
     setCurrentCategory(newCategory);
-    setData([]); // ✅ Clear previous data when switching categories
+    setData([]);
     setPage(1);
     fetchData(1, newCategory);
   };

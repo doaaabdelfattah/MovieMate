@@ -54,7 +54,6 @@ export const fetchMoviesWithPage = async ({
       )}&page=${page}`
     : `${TMDB_CONFIG.BASE_URL}/discover/movie?sort_by=popularity.desc&page=${page}`; // Added page
 
-  console.log("endpoint", endpoint);
   const response = await fetch(endpoint, {
     method: "GET",
     headers: TMDB_CONFIG.headers,
@@ -92,8 +91,6 @@ export const fetchMoviesCategory = async ({
     // Fetch movies by specific category (popular, top_rated, upcoming, etc.)
     endpoint = `${TMDB_CONFIG.BASE_URL}/movie/${category}?api_key=${TMDB_CONFIG.API_KEY}&page=${page}`;
   }
-
-  console.log("Fetching from:", endpoint);
 
   const response = await fetch(endpoint, {
     method: "GET",

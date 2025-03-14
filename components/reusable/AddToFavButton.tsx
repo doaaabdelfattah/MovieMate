@@ -19,12 +19,12 @@ const StyledButton = styled.button<{ $type: "primary" | "secondary" }>`
   justify-content: center;
   gap: 0.5rem;
   color: white;
-  padding: 0.5rem;
+  padding: 0.3rem 0.3rem;
   font-size: 15px;
   font-weight: 400;
   min-width: fit-content;
   cursor: pointer;
-  transition: background-color 0.5s linear, color 0.5s linear,
+  transition: background-color 0.3s linear, color 0.5s linear,
     box-shadow 0.3s ease-in-out;
   &.active svg {
     color: red;
@@ -38,8 +38,9 @@ const StyledButton = styled.button<{ $type: "primary" | "secondary" }>`
     color: white;
 
     &:hover {
-      background-color: #ffffffda;
-      color: black;
+      background-color: #ab6cf4;
+      background-opacity: 30;
+      color: white;
       box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   `
       : `
@@ -79,9 +80,7 @@ const AddToFavButton: React.FC<AddToFavButtonProps> = ({
       onClick={() => updateFavorites(movieId)}
       $type={type}
     >
-      {favorites.includes(movieId)
-        ? "Remove from Favorites"
-        : "Add to Favorites"}
+      {favorites.includes(movieId) ? "Favorited" : "+ Favorites"}
       {favorites.includes(movieId) ? (
         <>
           {" "}

@@ -50,14 +50,14 @@ const useFetchByGenre = (
 
   const changeGenre = (newGenreId: number) => {
     setCurrentGenreId(newGenreId);
-    setMovies([]); // ✅ Clear previous data
+    setMovies([]); //  Clear previous data
     setPage(1);
     fetchMovies(1, newGenreId, sortBy);
   };
 
   const changeSort = (newSortBy: "popularity.desc" | "release_date.desc") => {
     setSortBy(newSortBy);
-    setMovies([]); // ✅ Clear previous data
+    setMovies([]);
     setPage(1);
     fetchMovies(1, currentGenreId, newSortBy);
   };

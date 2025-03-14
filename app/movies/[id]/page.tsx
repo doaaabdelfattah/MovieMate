@@ -19,8 +19,6 @@ export default async function MoviePage({ params }: MoviePageProps) {
     fetchMovieImages(movieId),
   ]);
 
-  console.log("movieDetails: ", movieDetails);
-
   if (isNaN(movieId)) {
     return <h1>Invalid Movie ID</h1>;
   }
@@ -138,18 +136,25 @@ export default async function MoviePage({ params }: MoviePageProps) {
           </div>
         </div>
       </div>
-      <div className="w-full my-30">
-        {images?.backdrops && (
-          <ImageCarousel
-            slides={images.backdrops.map(
-              (img: { file_path: string }, index: number) => ({
-                image: `https://image.tmdb.org/t/p/w1280${img.file_path}`,
-                title: `Slider-Image-${index}`,
-              })
-            )}
-          />
-        )}
-      </div>
+
+      <section className="container mx-auto flex items-center justify-center gap-20 flex-col my-30">
+        <h2 className="text-center text-lg bg-accentColor-300 backdrop-blur-2xl rounded-full py-3 px-6 font-bold inline-block">
+          Image Gallery
+        </h2>
+
+        <div className="w-full">
+          {images?.backdrops && (
+            <ImageCarousel
+              slides={images.backdrops.map(
+                (img: { file_path: string }, index: number) => ({
+                  image: `https://image.tmdb.org/t/p/w1280${img.file_path}`,
+                  title: `Slider-Image-${index}`,
+                })
+              )}
+            />
+          )}
+        </div>
+      </section>
     </div>
   );
 }
