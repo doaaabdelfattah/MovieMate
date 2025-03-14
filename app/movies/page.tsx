@@ -40,8 +40,8 @@ export default function MoviesPage() {
 
   return (
     <section className="container mx-auto">
-      <div className="flex justify-center gap-4 my-5 items-center">
-        <div className="md:w-2/3 w-1/2">
+      <div className="flex justify-center flex-wrap gap-4 my-5 items-center">
+        <div className="md:w-2/3 w-full">
           <HeaderSection title="Discover Movies" />
         </div>
         <div className="flex-1">
@@ -59,7 +59,7 @@ export default function MoviesPage() {
       {moviesError && <p>Error: {moviesError}</p>}
 
       <div>
-        <ul className="grid md:grid-cols-3 grid-cols-2 lg:grid-cols-5 gap-4 p-10">
+        <ul className="grid md:grid-cols-3 grid-cols-2 lg:grid-cols-5 gap-4 p-5">
           {movies?.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
