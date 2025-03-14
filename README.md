@@ -92,7 +92,3 @@ MovieMate is a Next.js-based movie recommendation app that allows users to disco
 ## 🤝 Contributing
 
 Feel free to fork, submit issues, or make pull requests! 🚀
-
-## 📜 License
-
-This project is licensed under the MIT License.
