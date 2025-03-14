@@ -2,7 +2,7 @@
 
 import { Movie } from "@/lib/types";
 import { useEffect, useState } from "react";
-const FAMILY_FRIENDLY_GENRES = [10751, 16, 12]; // [Family, Animation, Adventure, Fantasy]
+// const FAMILY_FRIENDLY_GENRES = [10751, 16, 12]; // [Family, Animation, Adventure, Fantasy]
 const EXCLUDED_GENRE = 10749;
 
 const useFetch = (
