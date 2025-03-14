@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
-import { FaMagnifyingGlass } from "react-icons/fa6";
-
+import { Search } from "lucide-react";
 interface Props {
   handleOnClick: () => void;
   placeHolder?: string;
@@ -49,7 +48,7 @@ const SearchBar = ({
         aria-label="Search"
         className="cursor-pointer"
       >
-        <FaMagnifyingGlass className="text-white" />
+        <Search className="text-white" />
       </button>
     </div>
   );

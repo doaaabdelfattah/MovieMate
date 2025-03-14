@@ -2,9 +2,10 @@
 import React, { useEffect } from "react";
 import useFetch from "@/hooks/useFetch";
 import { fetchMoviesCategory } from "@/lib/tmdb";
-import HeroCarousel from "./HeroCarousel";
+
 import SpiralLoader from "../reusable/SpiralLoader";
 
+import HeroCarousel from "./HeroCarousel";
 export default function Hero() {
   const {
     data: movies,
@@ -15,20 +16,20 @@ export default function Hero() {
   } = useFetch((page) =>
     fetchMoviesCategory({
       query: "",
-      category: "top_rated",
+      category: "popular",
       page,
     })
   );
 
   useEffect(() => {
-    if (movies.length < 8 && !moviesLoading) {
+    if (movies.length < 5 && !moviesLoading) {
       loadMore();
     }
   }, [movies, moviesLoading]); // eslint-disable-line react-hooks/exhaustive-deps
-  console.log(movies);
+
   return (
     <section
-      className="h-screen w-full flex items-center justify-evenly flex-col"
+      className="h-screen w-full mb-40 flex items-center justify-evenly flex-col"
       id="top"
     >
       {/* ====== gradient effect======= */}
@@ -45,10 +46,13 @@ export default function Hero() {
 
       {moviesLoading && <SpiralLoader />}
       {moviesError && <p>Error: {moviesError}</p>}
-
-      <div className="w-full h-[500px]">
-        {movies && <HeroCarousel movies={movies} />}
+      {/* <div className="w-full">
+        <FullSwiper />
+      </div> */}
+      <div className="w-full">
+        {movies && <HeroCarousel movies={movies.slice(0, 5)} />}
       </div>
+      {/* {movies && <CoverFlowSwiper movies={movies} />} */}
     </section>
   );
 }

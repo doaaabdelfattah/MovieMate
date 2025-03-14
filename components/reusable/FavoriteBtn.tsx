@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
 import styled from "styled-components";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+
 import { useFavorites } from "@/hooks/useFavorites";
+import { Heart } from "lucide-react";
 
 interface FavoriteBtnProps {
   movieId: number;
@@ -39,7 +40,7 @@ const FavoriteBtn: React.FC<FavoriteBtnProps> = ({ movieId }) => {
       className={`${isFavorite ? "active" : ""}`}
       onClick={() => updateFavorites(movieId)}
     >
-      {isFavorite ? <FaHeart /> : <FaRegHeart />}
+      {isFavorite ? <Heart fill="#fff" size={20} /> : <Heart size={20} />}
     </StyledFavoriteBtn>
   );
 };

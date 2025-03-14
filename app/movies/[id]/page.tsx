@@ -48,7 +48,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
           {/* ========== Left : Poster */}
           <div className=" w-full lg:w-1/3 flex items-center justify-center shadow-lg ">
             <Image
-              src={`https://image.tmdb.org/t/p/original${movieDetails.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w780${movieDetails.poster_path}`}
               width={500}
               height={750}
               alt="poster"
@@ -144,7 +144,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
           <ImageCarousel
             slides={images.backdrops.map(
               (img: { file_path: string }, index: number) => ({
-                image: `https://image.tmdb.org/t/p/original${img.file_path}`,
+                image: `https://image.tmdb.org/t/p/w1280${img.file_path}`,
                 title: `Slider-Image-${index}`,
               })
             )}

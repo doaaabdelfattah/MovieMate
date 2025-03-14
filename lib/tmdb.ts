@@ -125,7 +125,7 @@ export const fetchMovieImages = async (movieId: number) => {
     `${TMDB_CONFIG.BASE_URL}/movie/${movieId}/images`,
     {
       method: "GET",
-      headers: TMDB_CONFIG.headers, // Ensure headers contain Authorization
+      headers: TMDB_CONFIG.headers,
     }
   );
 
@@ -166,49 +166,8 @@ export const fetchMovies = async ({
   return { ...data, results: filteredMovies };
 };
 
-// Fetch Popular Movies ==========
-export async function fetchPopularMovies() {
-  const res = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`);
-  if (!res.ok) throw new Error("Failed to fetch trending movies");
-  return res.json();
-}
-
-// Fetch Popular Movies ==========
-export async function fetchTopRatedMovies() {
-  const res = await fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`);
-  if (!res.ok) throw new Error("Failed to fetch  movies");
-  return res.json();
-}
-
-// Fetch Upcoming Movies ==========
-export async function fetchUpcomingMovies() {
-  const res = await fetch(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}`);
-  if (!res.ok) throw new Error("Failed to fetch movies");
-  return res.json();
-}
-// Fetch Upcoming Movies ==========
-export async function fetchNowPlayingMovies() {
-  const res = await fetch(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}`);
-  if (!res.ok) throw new Error("Failed to fetch now playing movies");
-  return res.json();
-}
-
-export async function fetchPopularTvs() {
-  const res = await fetch(`${BASE_URL}/tv/popular?api_key=${API_KEY}`);
-  if (!res.ok) throw new Error("Failed to fetch trending movies");
-  return res.json();
-}
-
 // ======= Fetch movie details by id ==============
 export async function fetchMovieDetails(movieId: number) {
-  // const options = {
-  //   method: "GET",
-  //   headers: {
-  //     accept: "application/json",
-  //     Authorization:
-  //       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzAwMjQ2Yjc1Yjk5MTI4MjgyZTllNTMzMTNhMjMxMyIsIm5iZiI6MTczNzMyMzk2OC4zMDQsInN1YiI6IjY3OGQ3NWMwZGNiNmU4MzlmMzQyZjhlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.sfhJvi0Qp-7kjKyBvB4yyt4gYrfmnq9BCN3tnf6pxZM",
-  //   },
-  // };
   const options = {
     method: "GET",
     headers: {
@@ -224,22 +183,6 @@ export async function fetchMovieDetails(movieId: number) {
   if (!res.ok) throw new Error("Failed to fetch movie details");
   return res.json();
 }
-
-// export async function fetchMovieDetails(movieId: number) {
-//   try {
-//     const response = await fetch(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`);
-
-//     if (!response.ok) {
-//       const errorText = await response.text();
-//       throw new Error(`Error ${response.status}: ${errorText}`);
-//     }
-
-//     return await response.json();
-//   } catch (error) {
-//     console.error("Error fetching movie details:", error);
-//     return null; // Return null instead of crashing the app
-//   }
-// }
 
 // =========== Fetch Genre =============
 export async function fetchGenres() {

@@ -2,10 +2,10 @@
 import HeaderSection from "../reusable/HeaderSection";
 import MySwiper from "../reusable/MySwiper";
 import Link from "next/link";
-import { GoArrowRight } from "react-icons/go";
 import useFetch from "@/hooks/useFetch";
 import { fetchMoviesCategory } from "@/lib/tmdb";
 import SpiralLoader from "../reusable/SpiralLoader";
+import { ChevronRight } from "lucide-react";
 
 const TopRatedMovies = () => {
   const {
@@ -20,14 +20,14 @@ const TopRatedMovies = () => {
     })
   );
   return (
-    <div className="container mx-auto my-20">
+    <div className="container mb-40 mx-auto">
       <div className="w-full block lg:hidden pr-3 mb-4">
         <HeaderSection title="Top Rated Movies" />
         <Link
           href="/movies"
-          className=" text-gray-400 hover:text-white duration-200 transition-all justify-end flex items-center gap-1 hover:gap-2 text-right "
+          className=" text-gray-400 hover:text-accentColor duration-200 transition-all justify-end flex items-center gap-1 hover:gap-2 text-right "
         >
-          View All <GoArrowRight />
+          View All <ChevronRight />
         </Link>
       </div>
       <div className="flex justify-center items-center felx-col flex-wrap lg:flex-nowrap lg:flex-row gap-10">
@@ -40,9 +40,9 @@ const TopRatedMovies = () => {
           </span>
           <Link
             href="/movies"
-            className=" text-gray-400 hover:text-white duration-200 transition-all justify-end flex items-center gap-1 hover:gap-2 text-right "
+            className=" text-gray-400 hover:text-accentColor duration-200 transition-all justify-end flex items-center gap-1 hover:gap-2 text-right "
           >
-            View All <GoArrowRight />
+            View All <ChevronRight />
           </Link>
         </div>
         {moviesLoading && <SpiralLoader />}

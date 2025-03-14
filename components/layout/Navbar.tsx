@@ -1,12 +1,9 @@
 "use client";
 import { useRouter, usePathname } from "next/navigation";
-import { FaHeart } from "react-icons/fa6";
 import React, { useRef, useState, useEffect } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { IoMdCloseCircleOutline } from "react-icons/io";
 import Link from "next/link";
 import SearchBar from "../reusable/SearchBar";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { Search, Menu, Heart, CircleX } from "lucide-react";
 export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const sideMenuRef = useRef<HTMLDivElement | null>(null);
@@ -94,14 +91,15 @@ export default function Navbar() {
             href="/search"
             className="lg:hidden  cursor-pointer w-10 h-10   rounded-full flex items-center justify-center hover:text-accentColor  transition-all duratioen-300"
           >
-            <FaMagnifyingGlass />
+            {/* <FaMagnifyingGlass /> */}
+            <Search />
           </Link>
           <Link href="/favorites">
             <button
-              className="cursor-pointer w-10 h-10 rounded-full text-lightColor flex items-center justify-center hover:text-accentColor transition-all duratioen-300 gap-2"
+              className="cursor-pointer w-10 h-10 rounded-full text-lightColor flex items-center justify-center hover:bg-accentColor transition-all duratioen-300 gap-2"
               aria-label="Favorites"
             >
-              <FaHeart size={20} />
+              <Heart fill="#fff" size={25} />
             </button>
           </Link>
           <button
@@ -109,7 +107,8 @@ export default function Navbar() {
             arial-label="side menu"
             title="Open side menu"
           >
-            <GiHamburgerMenu onClick={openMenu} size={25} />
+            <Menu onClick={openMenu} size={25} />
+            {/* <GiHamburgerMenu onClick={openMenu} size={25} /> */}
           </button>
         </div>
 
@@ -122,7 +121,7 @@ export default function Navbar() {
             className="absolute  right-6 top-6 hover:opacity-60 duration-75 transition-opacity"
             onClick={closeMenu}
           >
-            <IoMdCloseCircleOutline size={20} className="cursor-pointer" />
+            <CircleX size={20} className="cursor-pointer" />
           </span>
           <ul className="">
             <li className="slide-up-hover-x">

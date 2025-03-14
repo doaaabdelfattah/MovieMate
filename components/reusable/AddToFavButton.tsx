@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import styled from "styled-components";
-// import { useState } from "react";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { Heart } from "lucide-react";
 import { useFavorites } from "@/hooks/useFavorites";
 
 interface AddToFavButtonProps {
@@ -86,11 +85,11 @@ const AddToFavButton: React.FC<AddToFavButtonProps> = ({
       {favorites.includes(movieId) ? (
         <>
           {" "}
-          <FaHeart />
+          <Heart fill="#fff" size={20} />
         </>
       ) : (
         <>
-          <FaRegHeart />
+          <Heart size={20} />
         </>
       )}
     </StyledButton>

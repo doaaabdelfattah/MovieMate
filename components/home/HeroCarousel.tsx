@@ -16,7 +16,9 @@ export const HeroCarousel: React.FC<MoviesResponse> = ({ movies }) => {
         centeredSlides
         slidesPerView="auto"
         effect="coverflow"
-        loop
+        initialSlide={Math.floor(movies.length / 2)}
+        loop={true}
+        spaceBetween={20}
         coverflowEffect={{
           rotate: 50,
           stretch: 0,
@@ -26,32 +28,35 @@ export const HeroCarousel: React.FC<MoviesResponse> = ({ movies }) => {
         }}
         modules={[EffectCoverflow]}
       >
-        <div className="swiper-wrapper">
-          {movies?.map((movie) => (
+        <div className="r">
+          {movies?.map((movie, index) => (
             <SwiperSlide
               role="button"
               aria-label={`View details for ${movie.title}`}
               key={movie.id}
-              className="w-[300px] items-center h-[500px]"
+              className="w-[300px] items-center"
               onClick={() => router.push(`/movies/${movie.id}`)}
             >
               <Image
+                layout="responsive"
                 src={
                   movie.poster_path
                     ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
                     : `https://placehold.co/550x400/1a1a1a/FFFFFF.png`
                 }
                 alt={movie.title}
-                height={550}
-                width={400}
-                className=""
-                quality={80}
-                priority={false}
+                width={300}
+                height={400}
+                quality={30}
+                priority={index === 0}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSk..."
               />
             </SwiperSlide>
           ))}
         </div>
-        <div className="swiper-pagination"></div>
+        {/* <div className="swiper-pagination"></div> */}
       </Swiper>
     </section>
   );

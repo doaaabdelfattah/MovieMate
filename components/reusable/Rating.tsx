@@ -1,7 +1,6 @@
 "use client";
-import { FaStar } from "react-icons/fa6";
 import styled from "styled-components";
-
+import { Star } from "lucide-react";
 const StyledRating = styled.span<{ size: string }>`
   display: flex;
   align-items: center;
@@ -21,7 +20,10 @@ interface RatingProps {
 const Rating: React.FC<RatingProps> = ({ vote, size = "medium" }) => {
   return (
     <StyledRating size={size}>
-      <FaStar size={size === "small" ? 12 : size === "large" ? 24 : 16} />
+      <Star
+        fill="#ff9529"
+        size={size === "small" ? 12 : size === "large" ? 24 : 16}
+      />
       {vote}/10
     </StyledRating>
   );

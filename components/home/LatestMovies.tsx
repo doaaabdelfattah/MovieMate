@@ -1,23 +1,26 @@
 "use client";
 import HeaderSection from "../reusable/HeaderSection";
-import useFetch from "@/hooks/useFetch";
-import { fetchMoviesCategory } from "@/lib/tmdb";
+// import useFetch from "@/hooks/useFetch";
+// import { fetchMoviesCategory } from "@/lib/tmdb";
 import Accoordin from "../reusable/Accoordin";
 import Link from "next/link";
-import { GoArrowRight } from "react-icons/go";
+import useFetchByGenre from "@/hooks/useFetchByGenre";
+import { ChevronRight } from "lucide-react";
 import SpiralLoader from "../reusable/SpiralLoader";
+
 const LatestMovies = () => {
-  const {
-    data: movies,
-    loading: moviesLoading,
-    // error: moviesError,
-  } = useFetch((page) =>
-    fetchMoviesCategory({
-      query: "",
-      category: "now_playing",
-      page,
-    })
-  );
+  // const {
+  //   data: movies,
+  //   loading: moviesLoading,
+  //   // error: moviesError,
+  // } = useFetch((page) =>
+  //   fetchMoviesCategory({
+  //     query: "",
+  //     category: "now_playing",
+  //     page,
+  //   })
+  // );
+  const { movies, loading } = useFetchByGenre(16);
   console.log(movies);
   return (
     <div className="container  mx-auto my-20">
@@ -28,19 +31,19 @@ const LatestMovies = () => {
         />
         <Link
           href="/movies"
-          className=" text-gray-400 hover:text-white duration-200 transition-all justify-end flex items-center gap-1 hover:gap-2 text-right "
+          className=" text-gray-400 hover:text-accentColor duration-200 transition-all justify-end flex items-center gap-1 hover:gap-2 text-right "
         >
-          View All <GoArrowRight />
+          View All <ChevronRight />
         </Link>
       </div>
       <div className="flex justify-between items-center gap-10 w-[85%] mx-auto ">
-        {moviesLoading && <SpiralLoader />}
+        {loading && <SpiralLoader />}
         <div className="  flex justify-center items-center">
-          {movies && <Accoordin movies={movies} />}
+          {movies.length > 0 && <Accoordin movies={movies.slice(0, 6)} />}
         </div>
         <div className="hidden lg:flex flex-col md:w-1/3 pr-3">
           <h2 className="text-3xl font-bold border-b pb-4">
-            Experience the latest films hitting the big screen!
+            Discover the latest Family films hitting the big screen!
           </h2>
           <span className="text-gray-500 py-4 inline-block font-medium">
             These fresh releases are making waves in theaters right now—don’t
@@ -48,9 +51,9 @@ const LatestMovies = () => {
           </span>
           <Link
             href="/movies"
-            className=" text-gray-400 hover:text-white duration-200 transition-all justify-end flex items-center gap-1 hover:gap-2 text-right "
+            className=" text-gray-400 hover:text-accentColor duration-200 transition-all justify-end flex items-center gap-1 hover:gap-2 text-right "
           >
-            View All <GoArrowRight />
+            View All <ChevronRight />
           </Link>
         </div>
       </div>

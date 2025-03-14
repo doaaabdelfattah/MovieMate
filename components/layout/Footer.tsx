@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { MdEmail } from "react-icons/md";
-import { HiArrowSmRight } from "react-icons/hi";
-import { FaGithub } from "react-icons/fa";
+import { Mail, CircleSmall } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="w-full relative bg-mainDark border-t-2 border-mainLight mt-auto">
@@ -23,17 +21,19 @@ const Footer = () => {
         <div className="w-full lg:w-2/3 py-10 flex items-center  justify-around px-2 max-sm:grid max-sm:grid-cols-1 max-sm:items-center gap-5 ">
           {/* first Section =================== */}
 
-          <div className="flex flex-col text-left">
+          <div className="flex flex-col text-left gap-3">
             <h2 className="text-2xl ">Useful Links</h2>
             <ul className="text-md gap-2 flex flex-col tracking-wider">
-              <li className="slide-up-hover flex items-center gap-1">
-                <HiArrowSmRight /> <Link href="/">Home</Link>
+              <li className="slide-up-hover-x hover:text-accentColor flex items-center gap-2">
+                <CircleSmall fill="#fff" size={10} /> <Link href="/">Home</Link>
               </li>
-              <li className="slide-up-hover flex items-center gap-1">
-                <HiArrowSmRight /> <Link href="/movies">Discover Movies</Link>
+              <li className="slide-up-hover-x hover:text-accentColor flex items-center gap-2">
+                <CircleSmall fill="#fff" size={10} />{" "}
+                <Link href="/movies">Discover Movies</Link>
               </li>
-              <li className="slide-up-hover flex items-center gap-1">
-                <HiArrowSmRight /> <Link href="/favorites">My favorites</Link>
+              <li className="slide-up-hover-x hover:text-accentColor flex items-center gap-2">
+                <CircleSmall fill="#fff" size={10} />{" "}
+                <Link href="/favorites">My favorites</Link>
               </li>
             </ul>
           </div>
@@ -44,7 +44,7 @@ const Footer = () => {
             {/* Contact Info */}
             <div className="flex flex-col gap-2 text-md">
               <div className="flex items-center gap-2">
-                <MdEmail size={20} />
+                <Mail size={20} />
                 <Link
                   href="mailto:elafacademy17@gmail.com"
                   className="hover:text-white/70 duration-300 transition-all"
@@ -53,7 +53,7 @@ const Footer = () => {
                 </Link>
               </div>
               <div className="flex items-center gap-2">
-                <FaGithub size={20} />
+                {/* <FaGithub size={20} /> */}
                 <Link
                   href="https://github.com/doaaabdelfattah"
                   className="hover:text-white/70 duration-300 transition-all"
