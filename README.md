@@ -82,12 +82,9 @@ MovieMate is a Next.js-based movie recommendation app that allows users to disco
 - **Header Lines**: Expanding line animations.
 - **Swipers**: Smooth sliding with individual card delays.
 
-## 📌 Future Enhancements
+## 📌 Developed bu
 
-- **User Authentication**: Login to sync favorites.
-- **Genre-based Filtering**: Advanced filtering options.
-- **Movie Recommendations**: AI-based movie suggestions.
-- **Dark Mode**: Theme toggle support.
+Doaa Abdelfattah
 
 ## 🤝 Contributing
 

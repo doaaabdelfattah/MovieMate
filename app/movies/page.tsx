@@ -31,14 +31,10 @@ export default function MoviesPage() {
   } = useFetch((page) =>
     fetchMoviesCategory({
       query: searchQuery,
-      category: "popular",
+      category: "discover",
       page,
     })
   );
-
-  // useEffect(() => {
-  //   changeCategory("discover"); // Ensure correct category on mount
-  // }, []);
 
   useEffect(() => {
     refetch();

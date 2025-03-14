@@ -3,6 +3,7 @@
 import { Movie } from "@/lib/types";
 import { useEffect, useState } from "react";
 const FAMILY_FRIENDLY_GENRES = [10751, 16, 12]; // [Family, Animation, Adventure, Fantasy]
+const EXCLUDED_GENRE = 10749;
 
 const useFetch = (
   fetchFunction: (page: number, category: string) => Promise<Movie[]>,
@@ -22,15 +23,24 @@ const useFetch = (
       setError(null);
 
       const result = await fetchFunction(newPage, newCategory);
-
+      // const filteredMovies = result;
       // Filter out unwanted genres
+      // const filteredMovies = result.filter(
+      //   (movie: Movie) =>
+      //     movie.genre_ids?.some((id: number) =>
+      //       FAMILY_FRIENDLY_GENRES.includes(id)
+      //     ) && movie.vote_average > 0
+      // );
       const filteredMovies = result.filter(
         (movie: Movie) =>
-          movie.genre_ids?.some((id: number) =>
-            FAMILY_FRIENDLY_GENRES.includes(id)
-          ) && movie.vote_average > 0
+          !movie.genre_ids?.includes(EXCLUDED_GENRE) && movie.poster_path // Exclude Romanc // Exclude movies with a rating of 0
       );
-
+      console.log(
+        "Fetched movies:",
+        result.length,
+        "Filtered movies:",
+        filteredMovies.length
+      );
       setData((prevData) => {
         if (newPage === 1) return filteredMovies; // Reset on new search
 
