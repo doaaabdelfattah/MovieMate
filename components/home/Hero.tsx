@@ -2,7 +2,7 @@
 // import React, { useEffect } from "react";
 // import useFetch from "@/hooks/useFetch";
 // import { fetchMoviesCategory } from "@/lib/tmdb";
-
+import { motion } from "motion/react";
 import SpiralLoader from "../reusable/SpiralLoader";
 import HeroSwiper from "../reusable/HeroSwiper";
 import useFetchByGenre from "@/hooks/useFetchByGenre";
@@ -38,10 +38,15 @@ export default function Hero() {
 
       {/* ========= main header */}
       <header>
-        <h1 className="text-white leading-15 lg:leading-20 mx-auto  text-center text-3xl lg:text-6xl font-black">
+        <motion.h1
+          initial={{ y: -20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-white leading-15 lg:leading-20 mx-auto  text-center text-3xl lg:text-6xl font-black"
+        >
           Movies for Every Moment ..
           <span className="block">Fun for Every Family !</span>
-        </h1>
+        </motion.h1>
       </header>
 
       {moviesLoading && <SpiralLoader />}

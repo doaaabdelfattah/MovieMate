@@ -28,10 +28,9 @@ const Title = styled.h2`
     position: absolute;
     top: 50%;
     width: 100%;
-    height: 1.5px;
+    height: 1px;
     margin-left: 10px;
     background-color: #ab6cf4;
-    opacity: 0.5;
   }
 `;
 
