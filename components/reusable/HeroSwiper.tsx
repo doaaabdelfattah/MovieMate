@@ -16,7 +16,6 @@ interface MySwiperProps {
 const HeroSwiper: React.FC<MySwiperProps> = ({ movies }) => {
   return (
     <Swiper
-      navigation={true}
       loop={true}
       modules={[Navigation]}
       className="h-full"
