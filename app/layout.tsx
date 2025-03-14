@@ -31,6 +31,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="preconnect" href="https://api.themoviedb.org" />
+        <link rel="dns-prefetch" href="https://api.themoviedb.org" />
+      </head>
       <body
         className={`${opensans.className} antialiased min-h-screen flex flex-col justify-between leading-8 `}
         style={{ fontFamily: "Open Sans, Arial, sans-serif" }}

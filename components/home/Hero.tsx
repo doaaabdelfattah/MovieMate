@@ -29,7 +29,7 @@ export default function Hero() {
 
   return (
     <section
-      className="h-screen w-full mb-20 flex items-center justify-evenly flex-col"
+      className="h-screen pb-10 w-full mb-20 flex items-center justify-evenly flex-col"
       id="top"
     >
       {/* ====== gradient effect======= */}
@@ -49,8 +49,8 @@ export default function Hero() {
       {/* <div className="w-full">
         <FullSwiper />
       </div> */}
-      <div className="w-full h-[500px] p-4">
-        <HeroSwiper movies={validMovies} />
+      <div className="w-full">
+        <HeroSwiper movies={validMovies.slice(0, 5)} />
         {/* {movies && <HeroCarousel movies={movies.slice(0, 5)} />} */}
       </div>
       {/* {movies && <CoverFlowSwiper movies={movies} />} */}

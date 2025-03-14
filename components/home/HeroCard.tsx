@@ -29,9 +29,13 @@ const HeroCard: React.FC<MovieProps> = ({ movie }) => {
       key={movie.id}
     >
       <Image
-        src={`https://image.tmdb.org/t/p/w780${movie.poster_path}`}
+        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt={movie.title}
-        layout="fill"
+        width={500}
+        height={600}
+        priority
+        placeholder="blur" // Reduce layout shift
+        blurDataURL="data:image/svg+xml;base64,..."
         objectFit="cover" // Ensures full coverage
         className="rounded-lg"
         onClick={() => router.push(`/movies/${movie.id}`)}
