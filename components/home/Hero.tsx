@@ -26,11 +26,10 @@ export default function Hero() {
     "popularity.desc"
   );
   const validMovies = movies.filter((movie) => movie.vote_average > 0);
-  console.log("Movies before passing to HeroSwiper:", movies);
 
   return (
     <section
-      className="h-screen w-full mb-40 flex items-center justify-evenly flex-col"
+      className="h-screen w-full mb-20 flex items-center justify-evenly flex-col"
       id="top"
     >
       {/* ====== gradient effect======= */}
@@ -39,8 +38,8 @@ export default function Hero() {
 
       {/* ========= main header */}
       <header>
-        <h1 className="text-white leading-15 lg:leading-20 mx-auto  text-center text-4xl lg:text-6xl font-black">
-          Movies for Every Moment
+        <h1 className="text-white leading-15 lg:leading-20 mx-auto  text-center text-3xl lg:text-6xl font-black">
+          Movies for Every Moment ..
           <span className="block">Fun for Every Family !</span>
         </h1>
       </header>
@@ -50,7 +49,7 @@ export default function Hero() {
       {/* <div className="w-full">
         <FullSwiper />
       </div> */}
-      <div className="w-full h-[500px]">
+      <div className="w-full h-[500px] p-4">
         <HeroSwiper movies={validMovies} />
         {/* {movies && <HeroCarousel movies={movies.slice(0, 5)} />} */}
       </div>

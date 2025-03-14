@@ -29,7 +29,7 @@ const MySwiper: React.FC<MySwiperProps> = ({ movies }) => {
       {movies?.map((movie) => (
         <SwiperSlide key={movie.id}>
           <Link href={`/movies/${movie.id}`} className="group">
-            <div className="relative overflow-hidden rounded-lg">
+            <div className="relative overflow-hidden">
               {/* Movie Poster */}
               <Image
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}

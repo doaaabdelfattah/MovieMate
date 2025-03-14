@@ -24,10 +24,11 @@ const useFetch = (
       const result = await fetchFunction(newPage, newCategory);
 
       // Filter out unwanted genres
-      const filteredMovies = result.filter((movie: Movie) =>
-        movie.genre_ids?.some((id: number) =>
-          FAMILY_FRIENDLY_GENRES.includes(id)
-        )
+      const filteredMovies = result.filter(
+        (movie: Movie) =>
+          movie.genre_ids?.some((id: number) =>
+            FAMILY_FRIENDLY_GENRES.includes(id)
+          ) && movie.vote_average > 0 // ✅ Exclude movies with 0 rating
       );
 
       setData((prevData) => {

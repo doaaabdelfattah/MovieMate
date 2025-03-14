@@ -5,7 +5,7 @@ import useFetch from "@/hooks/useFetch";
 import MovieCard from "@/components/reusable/MovieCard";
 import HeaderSection from "@/components/reusable/HeaderSection";
 import SearchBar from "@/components/reusable/SearchBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LoadMore from "@/components/reusable/LoadMore";
 import SpiralLoader from "@/components/reusable/SpiralLoader";
 
@@ -23,7 +23,7 @@ export default function MoviesPage() {
     // error: moviesError,
   } = useFetch((page) =>
     fetchMoviesCategory({
-      query: "",
+      query: searchQuery,
       category: "popular",
       page,
     })
@@ -33,10 +33,10 @@ export default function MoviesPage() {
   //   changeCategory("discover"); // Ensure correct category on mount
   // }, []);
 
-  // useEffect(() => {
-  //   refetch();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [searchQuery]);
+  useEffect(() => {
+    refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery]);
 
   return (
     <section className="container mx-auto">

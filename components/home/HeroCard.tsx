@@ -8,12 +8,15 @@ import Link from "next/link";
 import Rating from "../reusable/Rating";
 import Image from "next/image";
 // import { useFavorites } from "@/hooks/useFavorites";
+import { useRouter } from "next/navigation";
 
 const HeroCard: React.FC<MovieProps> = ({ movie }) => {
+  const router = useRouter();
   // const { favorites } = useFavorites();
   // const isFavorite = favorites.includes(movie.id);
 
   const [showDetails, setShowDetails] = useState(false);
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
   return (
     <div
       className="relative w-full h-full bg-cover bg-center cursor-pointer transition-all duration-300     
@@ -31,11 +34,16 @@ const HeroCard: React.FC<MovieProps> = ({ movie }) => {
         layout="fill"
         objectFit="cover" // Ensures full coverage
         className="rounded-lg"
+        onClick={() => router.push(`/movies/${movie.id}`)}
       />
+
       <motion.div
         initial={{ opacity: 0 }}
-        animate={showDetails ? { opacity: 1 } : { opacity: 0 }}
+        // animate={showDetails ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
+        animate={
+          isMobile || showDetails ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+        }
         className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent transition-all duration-700"
       />
 

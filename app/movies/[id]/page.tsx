@@ -58,7 +58,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
           </div>
 
           {/* ========== Right : Movie Data ======== */}
-          <div className="w-full lg:w-2/3 px-5 mt-10 flex flex-col items-start justify-center">
+          <div className="w-full lg:w-2/3 px-5 lg:mt-30 mt-10 flex flex-col items-start justify-center">
             <h1 className="text-5xl font-black">{movieDetails.title}</h1>
             <div className="flex flex-wrap gap-2 text-normal mt-5 font-light">
               {movieDetails.genres.map(
@@ -84,56 +84,55 @@ export default async function MoviePage({ params }: MoviePageProps) {
               </h2>
               <p className="text-lg text-left py-4">{movieDetails.overview}</p>
             </article>
-            <div className="mt-6 space-y-3 text-lg">
-              <p>
-                <strong>Release Date:</strong>{" "}
-                {new Date(movieDetails.release_date).toDateString()}
-              </p>
-              <p>
-                <strong>Runtime:</strong>{" "}
-                {Math.floor(movieDetails.runtime / 60)}h{" "}
-                {movieDetails.runtime % 60}m
-              </p>
-              <p>
-                <strong>Budget:</strong> ${movieDetails.budget.toLocaleString()}
-              </p>
-              <p>
-                <strong>Revenue:</strong> $
-                {movieDetails.revenue.toLocaleString()}
-              </p>
-              <p>
-                <strong>Spoken Languages:</strong>{" "}
-                {movieDetails.spoken_languages
-                  .map((lang: { name: string }) => lang.name)
-                  .join(", ")}
-              </p>
-            </div>
 
-            <div className="mt-6">
-              <h3 className="text-xl font-bold">Production Companies:</h3>
-              <div className="flex flex-wrap gap-4 mt-3">
-                {movieDetails.production_companies.map(
-                  (
-                    company: { name: string; logo_path: string },
-                    index: number
-                  ) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-2 bg-gray-800 p-3 rounded-lg"
-                    >
-                      {company.logo_path && (
-                        <Image
-                          src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
-                          alt={company.name}
-                          width={50}
-                          height={50}
-                          className="rounded-md"
-                        />
-                      )}
-                      <span className="text-white">{company.name}</span>
-                    </div>
-                  )
-                )}
+            {/* ============= Second Section =========== */}
+
+            <div className="flex flex-col justify-between items-start gap-5 lg:flex-row w-full">
+              <div className="mt-6 space-y-3 text-lg">
+                <p>
+                  <strong>Release Date:</strong>{" "}
+                  {new Date(movieDetails.release_date).toDateString()}
+                </p>
+                <p>
+                  <strong>Runtime:</strong>{" "}
+                  {Math.floor(movieDetails.runtime / 60)}h{" "}
+                  {movieDetails.runtime % 60}m
+                </p>
+                <p>
+                  <strong>Budget:</strong> $
+                  {movieDetails.budget.toLocaleString()}
+                </p>
+                <p>
+                  <strong>Revenue:</strong> $
+                  {movieDetails.revenue.toLocaleString()}
+                </p>
+                <p>
+                  <strong>Spoken Languages:</strong>{" "}
+                  {movieDetails.spoken_languages
+                    .map((lang: { name: string }) => lang.name)
+                    .join(", ")}
+                </p>
+              </div>
+
+              <div className="mt-6">
+                <h3 className="text-xl font-bold">Production Companies:</h3>
+                <div className="flex flex-wrap gap-4  mt-3">
+                  {movieDetails.production_companies.map(
+                    (
+                      company: { name: string; logo_path: string },
+                      index: number
+                    ) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-2 rounded-lg"
+                      >
+                        <span className="text-white border-accentColor border rounded-2xl p-3">
+                          {company.name}
+                        </span>
+                      </div>
+                    )
+                  )}
+                </div>
               </div>
             </div>
           </div>
