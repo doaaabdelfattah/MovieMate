@@ -134,6 +134,25 @@ export const fetchMovieImages = async (movieId: number) => {
   return data; // Returns { backdrops: [], posters: [], logos: [] }
 };
 
+// =========== SIMilar =======
+
+export async function fetchSimilarMovies(movieId: number): Promise<Movie[]> {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/movie/${movieId}/similar?api_key=${API_KEY}&language=en-US&page=1`
+    );
+
+    if (!response.ok) throw new Error("Failed to fetch similar movies");
+
+    const data = await response.json();
+
+    return data.results.filter((movie: Movie) => movie.vote_average > 0); // Exclude movies with 0 rating
+  } catch (error) {
+    console.error("Error fetching similar movies:", error);
+    return [];
+  }
+}
+
 // - - - - - -  - - Dynamic FETCH Movies - - - - - - - - - - -
 export const fetchMovies = async ({
   category,

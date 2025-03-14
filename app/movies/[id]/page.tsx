@@ -1,7 +1,13 @@
 import AddToFavButton from "@/components/reusable/AddToFavButton";
+import HeaderSection from "@/components/reusable/HeaderSection";
 import ImageCarousel from "@/components/reusable/ImageCarousel";
+import MySwiper from "@/components/reusable/MySwiper";
 import Rating from "@/components/reusable/Rating";
-import { fetchMovieDetails, fetchMovieImages } from "@/lib/tmdb";
+import {
+  fetchMovieDetails,
+  fetchMovieImages,
+  fetchSimilarMovies,
+} from "@/lib/tmdb";
 import Image from "next/image";
 
 interface MoviePageProps {
@@ -14,9 +20,10 @@ export default async function MoviePage({ params }: MoviePageProps) {
   // const images = await fetchMovieImages(movieId);
   // const movieDetails = await fetchMovieDetails(movieId);
 
-  const [movieDetails, images] = await Promise.all([
+  const [movieDetails, images, similarMovies] = await Promise.all([
     fetchMovieDetails(movieId),
     fetchMovieImages(movieId),
+    fetchSimilarMovies(movieId),
   ]);
 
   if (isNaN(movieId)) {
@@ -24,7 +31,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
   }
 
   return (
-    <div className="w-ful">
+    <div className="w-full mb-20">
       {/* ======= Header ======= */}
 
       <div
@@ -155,6 +162,13 @@ export default async function MoviePage({ params }: MoviePageProps) {
           )}
         </div>
       </section>
+
+      <div className="w-[80%] mx-auto p-10">
+        <HeaderSection title="Similar movies" />
+        <div className="mt-5">
+          <MySwiper movies={similarMovies} />
+        </div>
+      </div>
     </div>
   );
 }
