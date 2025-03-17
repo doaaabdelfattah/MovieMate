@@ -38,7 +38,7 @@ const LatestMovies = () => {
       </div>
       <div className="flex justify-between items-center gap-10 w-[85%] mx-auto ">
         {loading && <SpiralLoader />}
-        <div className="  flex justify-center items-center">
+        <div className="w-full lg:w-2/3 flex justify-center items-center overflow-hidden">
           {movies.length > 0 && <Accoordin movies={movies.slice(0, 6)} />}
         </div>
         <div className="hidden lg:flex flex-col md:w-1/3 pr-3">
